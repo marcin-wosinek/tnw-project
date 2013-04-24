@@ -5,12 +5,11 @@
 class IndexController extends Kwgl_Controller_Action {
 
 	public function indexAction () {
-            //echo "index";
             
-            define('API_KEY',      'ijhfvgdjj594'                                          );
-            define('API_SECRET',   '2AJOxvV59Y7NCMAK'                                       );
+            define('API_KEY', 'ijhfvgdjj594');
+            define('API_SECRET', '2AJOxvV59Y7NCMAK');
             define('REDIRECT_URI', 'http://' . $_SERVER['SERVER_NAME'] . '/index/index');
-            define('SCOPE',        'r_fullprofile r_emailaddress rw_nus'                        );
+            define('SCOPE', 'r_fullprofile r_emailaddress rw_nus r_network');
             
             // OAuth 2 Control Flow
             if (isset($_GET['error'])) {
