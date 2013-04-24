@@ -5,9 +5,11 @@
 		<?php echo $this->headTitle() ?>
 		<?php echo $this->headLink(); ?>
 		<?php echo $this->headScript(); ?>
+    <link rel="stylesheet" type="text/css" href="/css/library/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/library/bootstrap/bootstrap-responsive.min.css">
 	</head>
 	<body>
-		<div id="iDivContainer">
+		<div id="iDivContainer" class="container">
 			<?php echo $this->layout()->content; ?>
 		</div>
 	</body>
