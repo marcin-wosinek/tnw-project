@@ -37,7 +37,9 @@ class IndexController extends Kwgl_Controller_Action {
             }
             
             $user = Model_LinkedIn::fetch('GET', '/v1/people/~:(first-name,last-name,email-address,id,headline,num-connections,picture-url,date-of-birth)');
-            Zend_Debug::dump($user);
+            //Zend_Debug::dump($user);
+            
+            $_SESSION['linked_in_id'] = $user->id;
             
             $daoUsers = Kwgl_Db_Table::factory('Users');
             $daoConnections = Kwgl_Db_Table::factory('Connections');
