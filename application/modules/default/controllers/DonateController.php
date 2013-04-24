@@ -77,38 +77,60 @@ class DonateController extends Kwgl_Controller_Action {
             Braintree_Configuration::publicKey('rsc6rj5dkxfsvqhm');
             Braintree_Configuration::privateKey('6f9417d781216e146c36a15f8350b950');
 
+            $daoUsers = Kwgl_Db_Table::factory('Users');
+            $daoConnections = Kwgl_Db_Table::factory('Connections');
+            
             $result = Braintree_Transaction::search(array( Braintree_TransactionSearch::type()->is(Braintree_Transaction::SALE)));
-
+            $donators = array();
             
-            
-            //Zend_Debug::dump($result);
-            $donations = array();
+            // loop through transactions
             foreach($result->_ids AS $transactionId){
                 
-                //echo $transactionId."<br/>";
                 $transaction = Braintree_Transaction::find($transactionId);
                 
-                
-                //echo $transaction->_attributes["status"];
-                
+                // if the transaction is authorized
                 if($transaction->_attributes["status"] == "authorized"){
-                
-                    //echo "email ".$transaction->_attributes["customer"]["email"];
                     
+                    // and the email address is know (used as unique identifier)
                     if($transaction->_attributes["customer"]["email"]){
+                     
+                        $userData = $daoUsers->fetchDetail(array("id"), array("emailAddress = ?" => $transaction->_attributes["customer"]["email"]));
                         
-                        //Zend_Debug::dump($transaction);
+                        // add the amount as points
+                        $donators[$userData->id]["amount"] += $transaction->amount;
                         
-                        $donations[$transaction->_attributes["customer"]["email"]]["amount"] += $transaction->amount;
-                
                     }
                     
                 }
             }
             
-            Zend_Debug::dump($donations);
+            $userScores = array();
             
-            die();
+            // loop through donators and give their connections points
+            foreach($donators AS $ownerId => $donations){
+                
+                // get connections from donator
+                $connectionUsers = $daoUsers->getConnectionUsersByOwnerId($ownerId);
+            
+                foreach($connectionUsers AS $connectionUser){
+                    $userScores[$connectionUser["id"]]["points"] += $donations["amount"]/5;
+                    $userScores[$connectionUser["id"]]["firstname"] = $connectionUser["firstName"];
+                    $userScores[$connectionUser["id"]]["lastname"] = $connectionUser["lastName"];
+                    $userScores[$connectionUser["id"]]["picture"] = $connectionUser["pictureUrl"];
+                    $userScores[$connectionUser["id"]]["headline"] = $connectionUser["headLine"];
+                }
+                
+                $userData = $daoUsers->fetchDetail(array("firstName","lastName","headLine","pictureUrl"), array("id = ?" => $ownerId));
+                
+                $userScores[$ownerId]["points"] += $donations["amount"];
+                $userScores[$ownerId]["firstname"] = $userData["firstName"];
+                $userScores[$ownerId]["lastname"] = $userData["lastName"];
+                $userScores[$ownerId]["headline"] = $userData["headLine"];
+                $userScores[$ownerId]["picture"] = $userData["pictureUrl"];
+                
+            }
+            
+            $this->view->userScores = json_encode($userScores);
             
         }
 
