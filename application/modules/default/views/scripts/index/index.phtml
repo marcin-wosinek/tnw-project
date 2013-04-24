@@ -1,1 +1,13 @@
-<?php //echo Kwgl_Utility_Mvc::getModule() . ' - ' . Kwgl_Utility_Mvc::getController() . ' - ' . Kwgl_Utility_Mvc::getAction(); ?>
+<?php
+// Change these
+
+ 
+// Congratulations! You have a valid token. Now fetch your profile 
+$user = Model_LinkedIn::fetch('GET', '/v1/people/~:(firstName,lastName)');
+print "Hello $user->firstName $user->lastName.";
+//exit;
+ 
+
+     
+
+ 
