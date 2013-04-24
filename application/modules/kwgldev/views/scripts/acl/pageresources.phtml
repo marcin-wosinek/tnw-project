@@ -1,0 +1,193 @@
+<?php
+$aContent = $this->aContent;
+$sDisplay = $aContent['display'];
+$oForm = $aContent['form'];
+?>
+
+<div class="cPageHeader">
+  <h1>Page Resources</h1>
+</div>
+
+<?php
+switch ($sDisplay) {
+	case 'create':
+?>
+<div class="cPageHeader">
+	<h3>Create New Resource</h3>
+</div>
+<script>
+	var ResourceNameBuilder = Kwgl.init({
+		oForm : null,
+		oModuleSelect : null,
+		oControllerSelect : null,
+		oActionSelect : null,
+		sBaseUrl : '/kwgldev/xhr_acl/children/',
+		init : function () {
+			var self = this;
+			self.oForm = $('#<?php echo $oForm->getAttrib('id'); ?>');
+			self.oResourceNameText = self.oForm.find('[name=textResourceName]');
+			self.oModuleSelect = self.oForm.find('[name=selectResourceModuleName]');
+			self.oControllerSelect = self.oForm.find('[name=selectResourceControllerName]');
+			self.oActionSelect = self.oForm.find('[name=selectResourceActionName]');
+
+			self.oModuleSelect.change(function(){
+				// Get Selected Value
+				var sModuleName = self.oModuleSelect.val();
+				self.fetchControllers(sModuleName);
+			});
+
+			self.oControllerSelect.change(function(){
+				// Get Selected Value
+				var sModuleName = self.oModuleSelect.val();
+				var sControllerName = self.oControllerSelect.val();
+				self.fetchActions(sModuleName, sControllerName);
+			});
+
+			self.oActionSelect.change(function(){
+				self.buildResourceName();
+			});
+
+		},
+		fetchControllers : function (sModuleName) {
+			var self = this;
+			var sUrl = self.sBaseUrl;
+			var aData = {
+				type: 'module',
+				parent: sModuleName
+			};
+			var aSettings = {
+				type: 'GET'
+			}
+
+			if (sModuleName != '') {
+				Kwgl.xhr.send(sUrl, aData, function (oResult) {
+					var bPopulated = false,
+						sOptions = '';
+
+					self.oActionSelect.empty();
+					self.oControllerSelect.empty();
+
+					for(var sKey in oResult){
+						var sControllerValue = sKey;
+						var sControllerLabel = oResult[sKey];
+						sOptions += '<option value="' + sControllerValue + '">' + sControllerLabel + '</option>';
+						bPopulated = true;
+					}
+
+					if (bPopulated) {
+						sOptions = '<option value="" selected="selected">Select Controller</option>' + sOptions;
+					}
+					self.oControllerSelect.html(sOptions);
+
+				}, aSettings);
+			}
+
+			self.buildResourceName();
+		},
+
+		fetchActions : function (sModuleName, sControllerName) {
+			var self = this;
+			var sUrl = self.sBaseUrl;
+			var aData = {
+				type: 'controller',
+				parent: sModuleName + '-' + sControllerName
+			};
+			var aSettings = {
+				type: 'GET'
+			}
+
+			if (sModuleName != '' && sControllerName != '') {
+				Kwgl.xhr.send(sUrl, aData, function (oResult) {
+					var bPopulated = false,
+						sOptions = '';
+
+					self.oActionSelect.empty();
+
+					for(var sKey in oResult){
+						var sActionValue = sKey;
+						var sActionLabel = oResult[sKey];
+						sOptions += '<option value="' + sActionValue + '">' + sActionLabel + '</option>';
+						bPopulated = true;
+					}
+
+					if (bPopulated) {
+						sOptions = '<option value="" selected="selected">Select Action</option>' + sOptions;
+					}
+					self.oActionSelect.html(sOptions);
+
+				}, aSettings);
+			}
+
+			self.buildResourceName();
+		},
+		buildResourceName : function () {
+			var self = this;
+			var sModule = self.oModuleSelect.val();
+			var sController = self.oControllerSelect.val();
+			var sAction = self.oActionSelect.val();
+
+			self.oResourceNameText.val('');
+			var sResourceName = '';
+			if (sModule != '') {
+				sResourceName += sModule;
+				if (sController != '' && sController != undefined) {
+					sResourceName += '-' + sController;
+					if (sAction != '' && sAction != undefined) {
+						sResourceName += '-' + sAction;
+					}
+				}
+			}
+
+			self.oResourceNameText.val(sResourceName);
+		}
+	});
+</script>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'delete':
+?>
+<h2>Delete Resource</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'list':
+		$aResources = $aContent['resources'];
+?>
+
+<table class="cTable cTableStriped cTableBordered">
+	<thead>
+		<tr>
+			<th>Resource Name</th>
+			<th><a href="<?php echo $this->url(array('operation' => 'create')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create new page resource</a></th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+foreach ($aResources as $aResource) {
+
+	$sId = $aResource['id'];
+	$sResourceName = $aResource['name'];
+	$bEditAllowed = ($aResource['edit_allowed'] == 1) ? true : false;
+?>
+		<tr>
+			<td><?php echo $sResourceName; ?></td>
+			<?php if ($bEditAllowed) { ?>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'delete')); ?>" class="cButton cButtonDanger"><i class="cIconWhite cIconTrash"></i> Delete</a></td>
+			<?php } else { ?>
+			<td class="cAlignCenter">N/A</td>
+			<?php } ?>
+		</tr>
+<?php
+}
+?>
+	</tbody>
+</table>
+<?php
+		break;
+}
+?>

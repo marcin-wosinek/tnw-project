@@ -1,0 +1,15 @@
+<?php
+$aContent = $this->aContent;
+$oForm = $aContent['form'];
+?>
+
+<div class="cPageHeader">
+	<h1>User Accounts</h1>
+	Please note that this will only create an Account as per the System Tables of this application. Any other related data that is necessary will need to be handled separately.
+</div>
+
+<?php echo $this->response(); ?>
+
+<?php echo $oForm; ?>
+
+<?php echo $this->backLink($this->url(array('action' => null,))); ?>

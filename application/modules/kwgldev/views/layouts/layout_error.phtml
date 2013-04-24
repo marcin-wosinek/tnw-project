@@ -1,0 +1,26 @@
+<?php echo $this->doctype() ?>
+<html lang="en">
+	<head>
+		<?php echo $this->headMeta(); ?>
+		<?php echo $this->headTitle() ?>
+		<?php echo $this->headLink(); ?>
+		<?php echo $this->headScript(); ?>
+	</head>
+	<body>
+<?php
+	$aPartial = array('partials/navigation.phtml', 'kwgldev');
+	$this->navigation()->menu()->setPartial($aPartial);
+?>
+		<div class="cContainer" id="iDivNavigationContainer">
+			<div class="cRow">
+				<div class="cSpan12 cNavigationBar"><?php echo $this->navigation()->menu()->render(); ?></div>
+			</div>
+		</div>
+
+		<div class="cContainer" id="iDivBodyContainer">
+			<div class="cRow">
+				<div class="cSpan12"><?php echo $this->layout()->content; ?></div>
+			</div>
+		</div>
+	</body>
+</html>

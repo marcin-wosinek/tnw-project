@@ -1,0 +1,21 @@
+/* 
+    Document   : pagination
+    Created on : Jan 7, 2011, 11:21:28 AM
+    Author     : Rumesh
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.cDivPaginationContainer{
+	margin: 10px 0 0 0;
+	text-align: center;
+}
+
+.iDivPaginationControls a {
+	color: #594C46;
+	font-weight: bold;
+}
+.cDivPagination {
+	margin: 0 auto;
+	padding: 0;
+}

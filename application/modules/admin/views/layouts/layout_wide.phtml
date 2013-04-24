@@ -1,0 +1,37 @@
+<?php echo $this->doctype('XHTML1_TRANSITIONAL'); ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<?php echo $this->headMeta(); ?>
+	<?php echo $this->headTitle(); ?>
+	<?php echo $this->headLink(); ?>
+    <?php echo $this->headScript(); ?>
+	<?php echo (isset ($this->xajax)) ? $this->xajax : ''; ?>
+</head>
+<body>
+	<div id="iDivContainer">
+		<div id="iDivHeader">
+			<div id="iDivLogo"><h1><span><a name="top">Administration</a></span></h1></div>
+			<div id="iDivUserPanel"><p><img src="/img/admin/icon_user.gif" width="16" height="19" alt=" " /> &nbsp;Hello, <a href="#" class="white"><?php echo Kwgl_User::getUsername(); ?></a>. | <a href="#">Settings</a> | <a href="/admin/index/logout/">Logout</a></p><p class="small">Last Login: <span class="white"><?php echo Zend_Registry::get('lastlogin'); ?></span></p></div>
+			<div id="iDivNavigation"><?php echo $this->partial('/partials/navigation_admin_top.phtml'); ?></div>
+		</div>
+		<hr />
+		<div id="iDivContent">
+			<?php echo $this->partial('/partials/response.phtml', array('aResponse' => Zend_Registry::get('response'))); ?>
+			<div id="iDivContentWide"><?php echo $this->layout()->content; ?></div>			
+		</div>
+		<br class="cBRClear" />
+	</div>
+	<hr />
+	<div id="iDivFooterWrapper">
+	<div id="iDivFooter"><?php echo $this->partial('/partials/navigation_admin_bottom.phtml'); ?>
+		<div id="iDivFooterRight">
+			<div id="iDivFooterStats"><p>Script executed in <strong>0.7</strong> s. <strong>15</strong> queries.</p></div>
+			Copyright 2010<br /><span class="white">Binck</span><p class="version">Build 0.01</p>
+		</div>
+  </div>
+  <br class="cBRClear" />
+</div>
+</body>
+</html>

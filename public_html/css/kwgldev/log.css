@@ -1,0 +1,14 @@
+.cTdYear {
+	text-indent: 0;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+.cTdMonth {
+	text-indent: 1em;
+	background-color: #666666;
+	color: #FFFFFF;
+}
+.cTdDay {
+	text-indent: 2em;
+	background-color: #CCCCCC;
+}

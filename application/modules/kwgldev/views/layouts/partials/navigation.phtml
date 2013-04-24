@@ -1,0 +1,51 @@
+<div class="cNavigationBarInner">
+
+	<div class="cContainer">
+
+		<a class="cBrand" href="/kwgldev/">KWGL Dev</a>
+		<ul class="cNavigation">
+			<li class="cDividerVertical"></li>
+<?php
+foreach ($this->container as $oPage) {
+
+	if (empty($oPage->pages)) {
+		$bDropdown = false;
+?>
+			<li class="<?php if ($oPage->isActive()) { ?> cActive<?php } ?>">
+				<a href="<?php echo $oPage->getHref(); ?>"><?php echo $oPage->getLabel(); ?></a>
+<?php
+	} else {
+		$bDropdown = true;
+?>
+			<li class="cDropdown<?php if ($oPage->isActive()) { ?> cActive<?php } ?>">
+	<?php if ($oPage->getLabel() == 'my-account') {	?>
+				<a href="#" class="cDropdownToggle" data-toggle="dropdown"><i class="cIconWhite cIconUser"></i><b class="cCaret"></b></a>
+	<?php } else { ?>
+				<a href="#" class="cDropdownToggle" data-toggle="dropdown"><?php echo $oPage->getLabel(); ?><b class="cCaret"></b></a>
+	<?php } ?>
+<?php
+	}
+
+	if ($bDropdown) {
+?>
+				<ul class="cDropdownMenu">
+<?php
+		foreach ($oPage->pages as $oSubPage) {
+?>
+			<li class="<?php if ($oSubPage->isActive()) { ?> cActive<?php } ?>">
+				<a href="<?php echo $oSubPage->getHref(); ?>"><?php echo $oSubPage->getLabel(); ?></a>
+			</li>
+<?php
+		}
+?>
+				</ul>
+<?php
+	}
+?>
+			</li>
+<?php
+}
+?>
+		</ul>
+	</div>
+</div>

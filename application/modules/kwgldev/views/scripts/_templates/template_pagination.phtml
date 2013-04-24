@@ -1,0 +1,59 @@
+<script id="iTemplateBasePagination" type="text/x-jsrender">
+<div class="cRow">
+
+	<div class="cSpan03 cDivPaginationPageOfPage">Page {{:current}} of {{:pageCount}}</div>
+
+	<div class="cSpan09">
+		<div class="cPagination cPaginationRight">
+			<ul>
+
+{{if previous}}
+				<li title="First - Go to page {{:first}}">
+					<a href="javascript:;" class="cPaginationPaginateLink" page_to_go_to="{{:first}}"><i class="cIconFastBackward"></i></a>
+				</li>
+				<li title="Previous - Go to page {{:previous}}">
+					<a href="javascript:;" class="cPaginationPaginateLink" page_to_go_to="{{:previous}}"><i class="cIconBackward"></i></a>
+				</li>
+{{else}}
+				<li class="cDisabled">
+					<a href="javascript:;"><i class="cIconFastBackward" title="First"></i></a>
+				</li>
+				<li class="cDisabled">
+					<a href="javascript:;"><i class="cIconBackward" title="Previous"></i></a>
+				</li>
+{{/if}}
+
+{{pagination pagesInRange current pageCount}}
+	{{if ~current == #data}}
+				<li class="cActive" title="Page {{:#data}} of {{:~pageCount}}">
+					<a href="javascript:;" class="cPaginationPaginateLink cPaginationPaginateLinkActive" page_to_go_to="{{:#data}}">{{:#data}}</a>
+				</li>
+	{{else}}
+				<li title="Go to page {{:#data}}">
+					<a href="javascript:;" class="cPaginationPaginateLink" page_to_go_to="{{:#data}}">{{:#data}}</a>
+				</li>
+	{{/if}}
+{{/pagination}}
+
+{{if next}}
+				<li title="Next - Go to page {{:next}}">
+					<a href="javascript:;" class="cPaginationPaginateLink" page_to_go_to="{{:next}}"><i class="cIconForward"></i></a>
+				</li>
+				<li title="Last - Go to page {{:last}}">
+					<a href="javascript:;" class="cPaginationPaginateLink" page_to_go_to="{{:last}}"><i class="cIconFastForward"></i></a>
+				</li>
+{{else}}
+				<li class="cDisabled">
+					<a href="javascript:;"><i class="cIconForward" title="Next"></i></a>
+				</li>
+				<li class="cDisabled">
+					<a href="javascript:;"><i class="cIconFastForward" title="Last"></i></a>
+				</li>
+{{/if}}
+
+			</ul>
+		</div>
+	</div>
+
+</div>
+</script>

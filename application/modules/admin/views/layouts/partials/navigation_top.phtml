@@ -1,0 +1,30 @@
+<?php
+	$aNavigation = $this->navigation();
+?>
+<!-- Beginning Menu Section -->
+<ul id='iUlAdminNavigation'>
+<?php foreach($aNavigation['menu'] as $aMenu) : ?>
+	<?php
+	$bMenuActive = $aNavigation['controller'] == $aMenu['controller'];
+	$sClassMenuActive = ($bMenuActive) ? ' cActive' : '';
+	$sSpanForArrow = ($bMenuActive) ? '<span class="cSpanArrow">&nbsp;</span>' : '';
+	?>
+	<li id='iLiMenu<?php echo ucwords($aMenu['controller']); ?>' class='cLiMenu<?php echo $sClassMenuActive; ?>'><?php echo $sSpanForArrow; ?>
+		<a href='<?php echo $this->escape($aMenu['url']); ?>' title='<?php echo $this->escape($aMenu['title']); ?>'><?php echo $this->escape($aMenu['title']); ?></a>
+		<?php if ($bMenuActive && !empty($aMenu['submenu'])) : ?>
+			<ul class='cUlSubMenu'>
+			<?php foreach ($aMenu['submenu'] as $aSubMenu) : ?>
+	<?php
+	$bSubMenuActive = $aNavigation['action'] == $aSubMenu['action'];
+	$sClassSubMenuActive = ($bSubMenuActive) ? ' cActive' : '';
+	?>
+				<li id='iLiSubMenu<?php echo ucwords($aSubMenu['action']); ?>' class='cLiSubMenu<?php echo $sClassSubMenuActive; ?>'>
+					<a href='<?php echo $this->escape($aSubMenu['url']); ?>' title='<?php echo $this->escape($aSubMenu['title']); ?>'><?php echo $this->escape($aSubMenu['title']); ?></a>
+				</li>
+			<?php endforeach; ?>
+			</ul>
+		<?php endif; ?>
+	</li>
+<?php endforeach; ?>
+</ul>
+<p id="iPViewSiteLink"><a href="/" target="_blank">View Site</a></p>

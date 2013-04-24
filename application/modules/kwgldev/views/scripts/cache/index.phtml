@@ -1,0 +1,43 @@
+<?php
+$aContent = $this->aContent;
+$aCacheManagerList = $aContent['cache-list'];
+?>
+
+<div class="cPageHeader">
+  <h1>Cache Management</h1>
+</div>
+
+<?php echo $this->response(); ?>
+
+<?php
+if (!empty($aCacheManagerList)) {
+?>
+<table class="cTable cTableStriped cTableBordered">
+	<thead>
+		<tr>
+			<th>Cache Name</th>
+			<th>Directory (relative to application path)</th>
+			<th>Life Time</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+		foreach ($aCacheManagerList as $sCacheName => $aCache) {
+			$sCacheDirectory = $aCache['directory'];
+			$sCacheLifeTime = $aCache['lifetime'];
+?>
+		<tr>
+			<td><?php echo $sCacheName; ?></td>
+			<td><?php echo $sCacheDirectory; ?></td>
+			<td><?php echo $sCacheLifeTime; ?>s</td>
+			<td><a href="<?php echo $this->url(array('cache' => $sCacheName, 'operation' => 'clear')); ?>" class="cButton cButtonDanger"><i class="cIconWhite cIconTrash"></i> Clear</a></td>
+		</tr>
+<?php
+		}
+?>
+	</tbody>
+</table>
+<?php
+}
+?>

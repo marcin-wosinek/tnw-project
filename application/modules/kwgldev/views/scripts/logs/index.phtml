@@ -1,0 +1,43 @@
+<?php
+$aContent = $this->aContent;
+$aLogFileList = $aContent['log-file-list'];
+?>
+
+<div class="cPageHeader">
+  <h1>Logs</h1>
+</div>
+
+<?php echo $this->response(); ?>
+
+<table class="cTable cTableBordered">
+<?php
+krsort($aLogFileList);
+?>
+<?php foreach ($aLogFileList as $sYear => $aYear) { ?>
+	<tr>
+		<td class="cTdYear" colspan="2">Year <?php echo $sYear; ?></td>
+	</tr>
+	<?php
+	krsort($aYear);
+	?>
+	<?php foreach ($aYear as $sMonth => $aMonth) { ?>
+	<tr>
+		<td class="cTdMonth" colspan="2">Month of <?php echo date('F', mktime(0, 0, 0, $sMonth, 0, $sYear)); ?></td>
+	</tr>
+		<?php
+		krsort($aMonth);
+		?>
+		<?php foreach ($aMonth as $sDay => $aDay) { ?>
+	<tr>
+		<td class="cTdDay" colspan="2"><?php echo date('jS, l', mktime(0, 0, 0, $sMonth, $sDay, $sYear)); ?></td>
+	</tr>
+			<?php foreach ($aDay as $sLogFile) { ?>
+	<tr>
+		<td><?php echo $sLogFile; ?></td>
+		<td><a href="/logs/<?php echo $sYear; ?>/<?php echo $sMonth; ?>/<?php echo $sDay; ?>/<?php echo $sLogFile; ?>" class="cButton cButtonInfo"><i class="cIconWhite cIconShareAlt"></i> Open</a></td>
+	</tr>
+			<?php } ?>
+		<?php } ?>
+	<?php } ?>
+<?php } ?>
+</table>

@@ -1,0 +1,36 @@
+<?php
+	$aResponseListing = $this->aResponse;
+	
+	if (empty($aResponseListing)) {
+
+	} else {
+		foreach ($aResponseListing as $aResponse) {
+			$sStatus = $aResponse['status'];
+			$sMessage = $aResponse['message'];
+			$sDetail = (isset($aResponse['detail']) ? $aResponse['detail'] : '');
+			switch ($sStatus) {
+				case 'successful':
+					$sResponseImage = 'icon_success.gif';
+					$sResponseClass = 'cDivResponseSuccessful';
+					break;
+				case 'error':
+					$sResponseImage = 'icon_error.gif';
+					$sResponseClass = 'cDivResponseError';
+					break;
+				case 'information':
+				default:
+					$sResponseImage = 'information.png';
+					$sResponseClass = 'cDivResponseInformation';
+					break;
+			}
+?>
+<?php if(!empty($sMessage)) :  ?>
+<div class='cDivResponse <?php echo $sResponseClass; ?>'>
+	<div class='cDivResponseTop'></div>
+	<div class='cDivResponseMessage cSpanResponseIcon'><p><?php echo $sMessage; ?></p><?php if ($sDetail != '') : ?><p><?php echo $sDetail; ?></p><?php endif; ?></div>
+</div>
+<?php endif; ?>
+<?php
+		}
+	}
+?>

@@ -1,0 +1,301 @@
+<?php
+$aContent = $this->aContent;
+
+$aAccountListing = null;
+if (isset($aContent['listing'])) {
+	$aAccountListing = $aContent['listing'];
+}
+
+$aRoleListing = null;
+if (isset($aContent['role-listing'])) {
+	$aRoleListing = $aContent['role-listing'];
+}
+
+?>
+
+<div class="cPageHeader">
+	<h1>User Accounts</h1>
+</div>
+
+<?php echo $this->response(); ?>
+
+<script id="iTemplateAccountListing" type="text/x-jsrender">
+	<tr>
+		<td class="cAlignLeft">{{:id}}</td>
+		<td class="cAlignLeft">{{:username}}</td>
+		<td class="cAlignLeft">{{:email}}</td>
+		<td class="cAlignLeft">{{:role_name}}</tD>
+		<td class="cAlignCenter">
+			<a href="/kwgldev/account/update/id/{{:id}}" class="cButton cButtonWarning"><i class="cIconWhite cIconPencil"></i> Update</a>
+			<a href="/kwgldev/account/delete/id/{{:id}}" class="cButton cButtonDanger"><i class="cIconWhite cIconTrash"></i> Delete</a>
+		</td>
+	</tr>
+</script>
+
+<script>
+
+$.views.tags ({
+	pagination: function (aPagesInRange, iCurrentPage, iPageCount) {
+		var mKey = "";
+		var oPaginationRangeToReturn = "";
+			for ( mKey in aPagesInRange ) {
+
+				if ( aPagesInRange.hasOwnProperty( mKey )) {
+					// For each property/field, render the content of the {{fields object}} tag, with "~key" as template parameter
+					oPaginationRangeToReturn += this.renderContent( aPagesInRange[ mKey ], { mKey: mKey, current: iCurrentPage, pageCount: iPageCount });
+				}
+			}
+
+			return oPaginationRangeToReturn;
+	}
+});
+
+$.views.helpers({
+
+	getPaginationPage: function () {
+		var oThis = this;
+		return oThis.data;
+	},
+
+	isCurrentPage: function (iCurrent) {
+		var oThis = this;
+		return iCurrent == oThis.data;
+	}
+
+});
+
+$.templates({
+	baseListingPagination: "#iTemplateBasePagination",
+	accountListingPagination: "#iTemplateAccountListing"
+});
+
+
+
+var AccountList = Kwgl.init({
+
+	oAccountPagination: null,
+
+	init: function () {
+
+		var oAL = this;
+
+		oAL.oAccountPagination = $('#iTableAccountListing');
+
+		oAL._initAccountList();
+
+		oAL._initAccountFilter();
+
+		oAL._initReload();
+
+	},
+
+	_initAccountList: function () {
+
+		var oAL = this;
+
+		var sAjaxUrl = '/kwgldev/xhr_account/listing/';
+		var oListContainer = oAL.oAccountPagination;
+
+		var renderTableBody = function(aDataset, mMetaData){
+			var sHtml = '';
+			if (aDataset.length > 0) {
+				sHtml = $('#iTemplateAccountListing').render(aDataset);
+			} else {
+				sHtml = '<tr>'
+					+ '<td colspan="6">No results...</td>'
+					+ '</tr>';
+			}
+			return sHtml;
+		};
+
+		oListContainer.paginate({
+			paginate_body_container : oListContainer.find('tbody'),
+			paginate_pagination_container : $('.cDivPaginationContainer'),
+			paginate_pagination_template_selector : '#iTemplateBasePagination',
+			paginate_sort_container: oListContainer.find('.cUlListingDropdown'),
+			paginate_filter_container: $('#iFormAccountListing'),
+			setBody : renderTableBody,
+			paginate_ajax_url : sAjaxUrl,
+			paginate_rows_per_page : 100,
+			paginate_page_range : 10
+		});
+	},
+
+	_initAccountFilter: function () {
+
+		var oAL = this;
+
+		var oCollapseTrigger = $('#iAFilterToggle');
+		$(".cCollapse").on('hidden', function () {
+				oCollapseTrigger.find('i').removeClass('cIconChevronUp');
+				oCollapseTrigger.find('i').addClass('cIconChevronDown');
+			}
+		);
+		$(".cCollapse").on('shown', function () {
+				oCollapseTrigger.find('i').removeClass('cIconChevronDown');
+				oCollapseTrigger.find('i').addClass('cIconChevronUp');
+			}
+		);
+
+		var oFilterForm = $('#iFormAccountListing');
+		oFilterForm.find('button[type=reset]').click(function(){
+			var oForm = $(this).parents('form');
+			oForm.each(function(){
+				this.reset();
+			});
+			oAL.oAccountPagination.paginate('reload');
+		});
+
+	},
+
+	_initReload: function () {
+
+		var oAL = this;
+
+		var oReloadTrigger = $('#iAReloadListing');
+		oReloadTrigger.click(function(){
+			oAL.oAccountPagination.paginate('reload');
+		});
+
+	}
+
+});
+
+</script>
+
+<div class="cDivFilterContainer">
+	<a href="javascript:;" data-toggle="collapse" data-target="#iFormAccountListing" data-parent=".cDivFilterContainer" id="iAFilterToggle" class="cButton cButtonLarge cButtonInverse">Filter <i class="cIconWhite cIconChevronDown"></i></a>
+
+	<form id="iFormAccountListing" class="cFormHorizontal cCollapse" action="" method="get">
+
+		<div class="cControlGroup">
+			<label for="textId" class="cControlLabel">ID</label>
+			<div class="cControls">
+				<input type="text" class="cSpan04" value="" id="textId" name="textId" filter_column="sa.id" filter_clause="where" filter_function="like">
+			</div>
+		</div>
+
+		<div class="cControlGroup">
+			<label for="textUsername" class="cControlLabel">Username</label>
+			<div class="cControls">
+				<input type="text" class="cSpan04" value="" id="textEmail" name="textUsername" filter_column="sa.username" filter_clause="where" filter_function="like">
+			</div>
+		</div>
+
+		<div class="cControlGroup">
+			<label for="textEmail" class="cControlLabel">Email</label>
+			<div class="cControls">
+				<input type="text" class="cSpan04" value="" id="textEmail" name="textEmail" filter_column="sa.email" filter_clause="where" filter_function="like">
+			</div>
+		</div>
+
+		<div class="cControlGroup">
+			<label for="textEmail" class="cControlLabel">Role</label>
+			<div class="cControls">
+				<input type="text" class="cSpan04" value="" id="textRoleName" name="textRoleName" filter_column="role_name" filter_clause="having" filter_function="like">
+			</div>
+		</div>
+
+		<div class="cFormActions">
+			<button type="reset" class="cButton cButtonInverse">Clear Filters <i class="cIconWhite cIconRepeat"></i></button>
+		</div>
+
+
+	</form>
+</div>
+
+
+
+<div class="cDivPaginationContainer"></div>
+<?php //if (isset($aContent['listing'])) echo "<div class='cDivAccountPagination'>" . $this->paginationControl($aContent['listing'], 'Sliding', '/account/pagination.phtml') . "</div>"; ?>
+
+<table id="iTableAccountListing" class="cTable cTableStriped cTableBordered">
+	<thead>
+		<tr>
+			<th>
+				<div class="cDropdown">
+
+					<a href="" id="iAUsernameDropdown" class="cDropdownToggle cAListingDropdownToggle" data-toggle="dropdown">
+						ID <b class="cCaret"></b>
+					</a>
+
+					<ul id="iDivRoleDropdown" class="cDropdownMenu cUlListingDropdown">
+						<li>
+							<a href="javascript:;" class="cPaginationSortable cPaginationSortableActive" paginate_sort_column="id" paginate_sort_mode="one-way" paginate_sort_one_way_order="ASC"><i class="cIcon cIconChevronUp"></i> Sort Ascending </a>
+						</li>
+						<li>
+							<a href="javascript:;" class="cPaginationSortable" paginate_sort_column="id" paginate_sort_mode="one-way" paginate_sort_one_way_order="DESC"><i class="cIcon cIconChevronDown"></i> Sort Descending </a>
+						</li>
+					</ul>
+
+				</div>
+			</th>
+			<th>
+				<div class="cDropdown">
+
+					<a href="" id="iAUsernameDropdown" class="cDropdownToggle cAListingDropdownToggle" data-toggle="dropdown">
+						Username <b class="cCaret"></b>
+					</a>
+
+					<ul id="iDivRoleDropdown" class="cDropdownMenu cUlListingDropdown">
+						<li>
+							<a href="javascript:;" class="cPaginationSortable" paginate_sort_column="username" paginate_sort_mode="one-way" paginate_sort_one_way_order="ASC"><i class="cIcon cIconChevronUp"></i> Sort Ascending </a>
+						</li>
+						<li>
+							<a href="javascript:;" class="cPaginationSortable" paginate_sort_column="username" paginate_sort_mode="one-way" paginate_sort_one_way_order="DESC"><i class="cIcon cIconChevronDown"></i> Sort Descending </a>
+						</li>
+					</ul>
+
+				</div>
+			</th>
+			<th>
+				<div class="cDropdown">
+
+					<a href="" id="iAEmailDropdown" class="cDropdownToggle cAListingDropdownToggle" data-toggle="dropdown">
+						Email <b class="cCaret"></b>
+					</a>
+
+					<ul id="iDivRoleDropdown" class="cDropdownMenu cUlListingDropdown">
+						<li>
+							<a href="javascript:;" class="cPaginationSortable" paginate_sort_column="email" paginate_sort_mode="one-way" paginate_sort_one_way_order="ASC"><i class="cIcon cIconChevronUp"></i> Sort Ascending </a>
+						</li>
+						<li>
+							<a href="javascript:;" class="cPaginationSortable" paginate_sort_column="email" paginate_sort_mode="one-way" paginate_sort_one_way_order="DESC"><i class="cIcon cIconChevronDown"></i> Sort Descending </a>
+						</li>
+					</ul>
+
+				</div>
+			</th>
+			<th>
+				<div class="cDropdown">
+
+					<a href="" id="iARoleDropdown" class="cDropdownToggle cAListingDropdownToggle" data-toggle="dropdown">
+						Role <b class="cCaret"></b>
+					</a>
+
+					<ul id="iDivRoleDropdown" class="cDropdownMenu cUlListingDropdown">
+						<li>
+							<a href="javascript:;" class="cPaginationSortable" paginate_sort_column="role_name" paginate_sort_mode="one-way" paginate_sort_one_way_order="ASC"><i class="cIcon cIconChevronUp"></i> Sort Ascending </a>
+						</li>
+						<li>
+							<a href="javascript:;" class="cPaginationSortable" paginate_sort_column="role_name" paginate_sort_mode="one-way" paginate_sort_one_way_order="DESC"><i class="cIcon cIconChevronDown"></i> Sort Descending </a>
+						</li>
+					</ul>
+
+				</div>
+			</th>
+			<th class="cAlignCenter" colspan="2">
+				<a href="<?php echo $this->url(array('action' => 'create')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create</a>
+				<a href="javascript:;" class="cButton cButtonInverse" id="iAReloadListing"><i class="cIconWhite cIconRefresh"></i> Reload</a>
+			</th>
+		</tr>
+	</thead>
+<?php if (!empty($aAccountListing)) { ?>
+	<tbody>
+
+	</tbody>
+<?php } ?>
+</table>
+
+<div class="cDivPaginationContainer"></div>
+<?php //if (isset($aContent['listing'])) echo "<div class='cDivAccountPagination'>" . $this->paginationControl($aContent['listing'], 'Sliding', '/account/pagination.phtml') . "</div>"; ?>

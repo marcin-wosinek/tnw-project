@@ -1,0 +1,107 @@
+/* 24-Column Layout */
+.cContainer-24 {
+	width: 950px;
+	margin: auto;
+}
+.cGrid-01,
+.cGrid-02,
+.cGrid-03,
+.cGrid-04,
+.cGrid-05,
+.cGrid-06,
+.cGrid-07,
+.cGrid-08,
+.cGrid-09,
+.cGrid-10,
+.cGrid-11,
+.cGrid-12,
+.cGrid-13,
+.cGrid-14,
+.cGrid-15,
+.cGrid-16,
+.cGrid-17,
+.cGrid-18,
+.cGrid-19,
+.cGrid-20,
+.cGrid-21,
+.cGrid-22,
+.cGrid-23,
+.cGrid-24 {
+	float: left;
+	margin-right: 20px;
+}
+.cLast {
+	margin-right: 0;
+}
+.cContainer-24 .cGrid-01 {
+	width: 30px;
+}
+.cContainer-24 .cGrid-02 {
+	width: 70px;
+}
+.cContainer-24 .cGrid-03 {
+	width: 110px;
+}
+.cContainer-24 .cGrid-04 {
+	width: 140px;
+}
+.cContainer-24 .cGrid-05 {
+	width: 180px;
+}
+.cContainer-24 .cGrid-06 {
+	width: 220px;
+}
+.cContainer-24 .cGrid-07 {
+	width: 260px;
+}
+.cContainer-24 .cGrid-08 {
+	width: 300px;
+}
+.cContainer-24 .cGrid-09 {
+	width: 340px;
+}
+.cContainer-24 .cGrid-10 {
+	width: 380px;
+}
+.cContainer-24 .cGrid-11 {
+	width: 420px;
+}
+.cContainer-24 .cGrid-12 {
+	width: 460px;
+}
+.cContainer-24 .cGrid-13 {
+	width: 500px;
+}
+.cContainer-24 .cGrid-14 {
+	width: 540px;
+}
+.cContainer-24 .cGrid-15 {
+	width: 580px;
+}
+.cContainer-24 .cGrid-16 {
+	width: 620px;
+}
+.cContainer-24 .cGrid-17 {
+	width: 660px;
+}
+.cContainer-24 .cGrid-18 {
+	width: 700px;
+}
+.cContainer-24 .cGrid-19 {
+	width: 740px;
+}
+.cContainer-24 .cGrid-20 {
+	width: 780px;
+}
+.cContainer-24 .cGrid-21 {
+	width: 820px;
+}
+.cContainer-24 .cGrid-22 {
+	width: 860px;
+}
+.cContainer-24 .cGrid-23 {
+	width: 900px;
+}
+.cContainer-24 .cGrid-24 {
+	width: 940px;
+}

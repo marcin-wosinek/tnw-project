@@ -1,0 +1,174 @@
+<?php
+$aContent = $this->aContent;
+$aOverview = $aContent['overview'];
+$aRoles = $aContent['roles'];
+
+$iRoles = count($aRoles);
+//Zend_Debug::dump($aOverview);
+
+$sAclAllowedClass = 'cAclAllowed';
+$sAclDeniedClass = 'cAclDenied';
+$sAclUndefinedClass = 'cAclUndefined';
+?>
+<div class="cPageHeader">
+  <h1>Page-Level Access Overview</h1>
+  All Users are always given access to the Error Controller (in Default Module).
+</div>
+
+<div class="cDivAclOverview">
+
+<table class="cTable cTableBordered cTableAclOverview">
+	<thead>
+		<tr>
+			<th rowspan="2" class="cThResources">Resource</th>
+			<th colspan="<?php echo $iRoles; ?>">Roles</th>
+		</tr>
+		<tr>
+<?php foreach ($aRoles as $iRoleId => $sRoleName) { ?>
+			<th class="cThRoles"><?php echo $sRoleName; ?></th>
+<?php } ?>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+foreach ($aOverview as $sModuleName => $aModuleDetails) {
+	$aPermissions = $aModuleDetails['acl-permissions'];
+	$aControllers = $aModuleDetails;
+	unset($aControllers['acl-permissions']);
+?>
+		<!-- Module Row Start -->
+		<tr>
+			<td class="cTdResources cTdModule"><?php echo $sModuleName; ?> Module</td>
+<?php
+	foreach ($aRoles as $iRoleId => $sRole) {
+		if ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_ALLOWED) {
+			// Allowed
+			$bAllowed = true;
+			$sPermissionClass = $sAclAllowedClass;
+			$sImage = '/img/kwgldev/_icons/tick.png';
+			$sText = 'Allowed';
+			$sBadgeHtml = '<span class="cBadge cBadgeSuccess"><i class="cIconWhite cIconOk"></i></span>';
+		} elseif ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_DENIED) {
+			// Denied
+			$bAllowed = false;
+			$sPermissionClass = $sAclDeniedClass;
+			$sImage = '/img/kwgldev/_icons/cross.png';
+			$sText = 'Denied';
+			$sBadgeHtml = '<span class="cBadge cBadgeError"><i class="cIconWhite cIconRemove"></i></span>';
+		} else {
+			// Undefined
+			$sPermissionClass = $sAclUndefinedClass;
+			$sImage = '/img/kwgldev/_icons/error.png';
+			$sText = 'Resource has not been defined';
+			$sBadgeHtml = '<span class="cBadge cBadgeWarning"><i class="cIconWhite cIconWarningSign"></i></span>';
+		}
+?>
+			<!--<td class="cTdPermission <?php //echo $sPermissionClass; ?>"><img src="<?php //echo $sImage; ?>" alt="<?php //echo $sText; ?>" title="<?php //echo $sText; ?>" /></td>-->
+			<td class="cTdPermission <?php echo $sPermissionClass; ?>"><?php echo $sBadgeHtml; ?></td>
+<?php
+	}
+?>
+		</tr>
+		<!-- Module Row End -->
+		<!-- Controller Rows for Module Start -->
+<?php
+	foreach ($aControllers as $sControllerName => $aControllerDetails) {
+		$aPermissions = $aControllerDetails['acl-permissions'];
+		$aActions = $aControllerDetails;
+		unset($aActions['acl-permissions']);
+?>
+		<!-- Controller Row Start -->
+		<tr>
+			<td class="cTdResources cTdController"><?php echo $sControllerName; ?> Controller</td>
+<?php
+		foreach ($aRoles as $iRoleId => $sRole) {
+			if ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_ALLOWED) {
+				// Allowed
+				$bAllowed = true;
+				$sPermissionClass = $sAclAllowedClass;
+				$sImage = '/img/kwgldev/_icons/tick.png';
+				$sText = 'Allowed';
+				$sBadgeHtml = '<span class="cBadge cBadgeSuccess"><i class="cIconWhite cIconOk"></i></span>';
+			} elseif ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_DENIED) {
+				// Denied
+				$bAllowed = false;
+				$sPermissionClass = $sAclDeniedClass;
+				$sImage = '/img/kwgldev/_icons/cross.png';
+				$sText = 'Denied';
+				$sBadgeHtml = '<span class="cBadge cBadgeError"><i class="cIconWhite cIconRemove"></i></span>';
+			} else {
+				// Undefined
+				$sPermissionClass = $sAclUndefinedClass;
+				$sImage = '/img/kwgldev/_icons/error.png';
+				$sText = 'Resource has not been defined';
+				$sBadgeHtml = '<span class="cBadge cBadgeWarning"><i class="cIconWhite cIconWarningSign"></i></span>';
+
+			}
+?>
+			<!--<td class="cTdPermission <?php echo $sPermissionClass; ?>"><img src="<?php echo $sImage; ?>" alt="<?php echo $sText; ?>" /></td>-->
+			<td class="cTdPermission <?php echo $sPermissionClass; ?>"><?php echo $sBadgeHtml; ?></td>
+<?php
+		}
+?>
+		</tr>
+		<!-- Controller Row End -->
+		<!-- Action Rows for Controller Start -->
+<?php
+		foreach ($aActions as $sActionName => $aActionDetails) {
+			$aPermissions = $aActionDetails['acl-permissions'];
+?>
+		<!-- Action Row Start -->
+		<tr>
+			<td class="cTdResources cTdAction"><?php echo $sActionName; ?> Action</td>
+<?php
+			foreach ($aRoles as $iRoleId => $sRole) {
+				if ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_ALLOWED) {
+					// Allowed
+					$bAllowed = true;
+					$sPermissionClass = $sAclAllowedClass;
+					$sImage = '/img/kwgldev/_icons/tick.png';
+					$sText = 'Allowed';
+					$sBadgeHtml = '<span class="cBadge cBadgeSuccess"><i class="cIconWhite cIconOk"></i></span>';
+				} elseif ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_DENIED) {
+					// Denied
+					$bAllowed = false;
+					$sPermissionClass = $sAclDeniedClass;
+					$sImage = '/img/kwgldev/_icons/cross.png';
+					$sText = 'Denied';
+					$sBadgeHtml = '<span class="cBadge cBadgeError"><i class="cIconWhite cIconRemove"></i></span>';
+				} else {
+					// Undefined
+					$sPermissionClass = $sAclUndefinedClass;
+					$sImage = '/img/kwgldev/_icons/error.png';
+					$sText = 'Resource has not been defined';
+					$sBadgeHtml = '<span class="cBadge cBadgeWarning"><i class="cIconWhite cIconWarningSign"></i></span>';
+				}
+?>
+			<!--<td class="cTdPermission <?php echo $sPermissionClass; ?>"><img src="<?php echo $sImage; ?>" alt="<?php echo $sText; ?>" /></td>-->
+			<td class="cTdPermission <?php echo $sPermissionClass; ?>"><?php echo $sBadgeHtml; ?></td>
+<?php
+			}
+?>
+		</tr>
+		<!-- Action Row End -->
+<?php
+		}
+?>
+		<!-- Action Rows for Controller End -->
+<?php
+	}
+?>
+		<!-- Controller Rows for Module End -->
+		<tr>
+			<th class="cThResources">Resource</th>
+<?php foreach ($aRoles as $iRoleId => $sRoleName) { ?>
+			<th class="cThRoles"><?php echo $sRoleName; ?></th>
+<?php } ?>
+		</tr>
+<?php
+}
+?>
+	</tbody>
+</table>
+
+</div>

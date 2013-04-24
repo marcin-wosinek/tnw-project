@@ -1,0 +1,95 @@
+/* 
+    Document   : js-examples
+    Created on : Dec 9, 2011, 4:57:55 PM
+    Author     : Udantha Pathirana <udanthaya@gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body{
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    font-size: 13px;
+}
+
+/* ajax loader */
+.ajax_loader_screen{
+	background: rgba(0,0,0, 0.5) url("/img/default/ajax-loader.gif") no-repeat center;
+}
+
+.min_ajax_loader_screen{
+	background: rgba(255,255,255, 0.5);
+}
+.min_ajax_loader_screen .loading_msg{
+	margin: auto;
+	width: 80px;
+	height: 25px;
+	background: #EEF66C url("/img/default/ajax-loader.gif") no-repeat 95% 50%;
+	padding: 0 15px 0 0;
+	font-size: 12px;
+	line-height: 25px;
+	text-align: center;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+}
+
+#iDivContainer{
+	width: 960px;
+	margin: 50px auto;
+}
+/* button styles */
+.cButton, a.cButton, a.cDelete{
+    background: #FFF url("/img/default/cButton_bg.png") repeat-x top;
+    height: 22px;
+    color:#3a556f;
+    font-size: 13px;
+    font-weight: normal;
+    border-color: #EDEDED #CDCDCD #C8C8C8 #E1E1E1;
+    border-style: solid;
+    border-width: 1px;
+    cursor:pointer;
+    display: inline-block;
+    line-height: 22px;
+    padding: 0 10px 0px;
+    margin: 0;
+	text-decoration: none;
+/*    position: relative;*/
+}
+
+/* common table styles */
+.cCommonTable td{
+    padding: 5px;
+    vertical-align: middle;
+}
+.cCommonTable td a{
+	color: #A0A0A0;
+}
+.cCommonTable thead td{
+    color: #3A556F;
+    font-weight: normal;
+    text-align: left;
+}
+.cCommonTable .cHead{
+	background: #CDCDCD;
+}
+
+.cPages{
+/*	background: #3a556f;*/
+}
+a.pagination_a{
+	padding: 3px;
+	border: 1px dotted #06f;
+	font-size: 12px;
+	line-height: 12px;
+	margin: 3px;
+	color: #06f;
+	background: transparent;
+}
+a.pagination_a:hover{
+	background: #FFF;
+	color: #333;
+}
+a.pagination_a.cur{
+	background: #FFF;
+}

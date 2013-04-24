@@ -1,0 +1,79 @@
+<?php
+$sFormActionsHtml = '';
+?>
+<div class="cDivZendFormWrapper">
+	<form class="cFormHorizontal" <?php echo $this->formAttributes($this); ?>>
+		<?php echo $this->csrfHash($this); ?>
+		<?php
+		foreach($this->element as $oElement) {
+			if ($oElement instanceof Zend_Form_Element_Hash) {
+				// Ignore CSRF Hash Element as it is handled by the csrfHash View Helper above
+				continue;
+			}
+
+			if ($oElement instanceof Zend_Form_Element_Submit) {
+				$sFormActionsHtml .= $oElement->__toString();
+			} elseif ($oElement instanceof Zend_Form_Element_Hash || $oElement instanceof Zend_Form_Element_Hidden) {
+				echo $oElement;
+			} else {
+
+				$bShowBelow = false;
+				// Check Type
+				if ($oElement instanceof Zend_Form_Element_Textarea) {
+					$bShowBelow = true;
+				} elseif ($oElement instanceof Zend_Form_Element_Select) {
+					$bShowBelow = true;
+				} else {
+
+				}
+
+				if ($oElement->hasErrors()) {
+					$bHasError = true;
+					$sControlGroupErrorClass = ' cError';
+				} else {
+					$bHasError = true;
+					$sControlGroupErrorClass = '';
+				}
+
+				$bFirst = true;
+				// Compile Errors
+				$sErrorsHtml = '';
+				foreach ($oElement->getMessages() as $sError) {
+					if ($bFirst) {
+						$bFirst = false;
+					} else {
+						echo ', ';
+					}
+					$sErrorsHtml .= $sError;
+				}
+
+				?>
+					<div class="cControlGroup<?php echo $sControlGroupErrorClass; ?>">
+						<label class="cControlLabel" for="<?php echo $oElement->getName(); ?>"><?php echo $oElement->getLabel(); ?></label>
+						<div class="cControls">
+							<?php echo $oElement; ?>
+				<?php
+				if ($bHasError) {
+					if ($bShowBelow) {
+				?>
+							<div class="cClearBoth"></div>
+							<div class="cHelpBlock"><?php echo $sErrorsHtml; ?></div>
+				<?php
+					} else {
+				?>
+							<span class="cHelpInline"><?php echo $sErrorsHtml; ?></span>
+				<?php
+					}
+				}
+				?>
+						</div>
+					</div>
+				<?php
+			}
+		}
+		?>
+		<div class="cFormActions">
+			<?php echo $sFormActionsHtml; ?>
+		</div>
+	</form>
+</div>

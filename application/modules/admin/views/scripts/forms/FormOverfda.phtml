@@ -1,0 +1,17 @@
+<form action="<?php echo $this->element->getAction();?>" method="<?php echo $this->element->getMethod(); ?>" id="<?php echo $this->element->getAttrib("id"); ?>" enctype="<?php echo $this->element->getAttrib("enctype"); ?>" accept-charset="utf-8">
+	<div class="cDivFormElement">
+		<div class="cDivLabel">
+			<?php echo $this->element->textTitle->getLabel(); ?>
+		</div>
+		<span><?php echo $this->element->textTitle; ?></span>
+	</div>
+	<div class="cDivFormElement">
+		<div class="cDivLabel">
+			<?php echo $this->element->textareaDescription->getLabel(); ?>
+		</div>
+		<span><?php echo $this->element->textareaDescription; ?></span>
+	</div>
+	<div class="cDivFormElement cDivSubmitButton">
+		<span><?php echo $this->element->submitOverfda; ?></span>
+	</div>
+</form>

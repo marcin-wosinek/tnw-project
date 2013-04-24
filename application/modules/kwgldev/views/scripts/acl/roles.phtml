@@ -1,0 +1,79 @@
+<?php
+$aContent = $this->aContent;
+$sDisplay = $aContent['display'];
+$oForm = $aContent['form'];
+?>
+
+<div class="cPageHeader">
+  <h1>Roles</h1>
+</div>
+
+<?php
+switch ($sDisplay) {
+	case 'create':
+?>
+<h2>Create Roles</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+
+<?php
+		break;
+	case 'update':
+?>
+<h2>Update Roles</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+
+<?php
+		break;
+	case 'delete':
+?>
+<h2>Delete Roles</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+
+<?php
+		break;
+	case 'list':
+		$aRoles = $aContent['roles'];
+?>
+
+<table class="cTable cTableStriped cTableBordered">
+	<thead>
+		<tr>
+			<th>Role Name</th>
+			<th>Role Parent</th>
+			<th colspan="2"><a href="<?php echo $this->url(array('operation' => 'create')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create</a></th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+foreach ($aRoles as $aRole) {
+
+	$sId = $aRole['id'];
+	$sRoleName = $aRole['name'];
+	$sParentRoleName = $aRole['parent'];
+	$bEditAllowed = ($aRole['edit_allowed'] == 1) ? true : false;
+?>
+		<tr>
+			<td><?php echo $sRoleName; ?></td>
+			<td><?php echo $sParentRoleName; ?></td>
+			<?php if ($bEditAllowed) { ?>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'update')); ?>" class="cButton cButtonWarning"><i class="cIconWhite cIconPencil"></i> Update</a></td>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'delete')); ?>" class="cButton cButtonDanger"><i class="cIconWhite cIconTrash"></i> Delete</a></td>
+			<?php } else { ?>
+			<td class="cAlignCenter" colspan="2">N/A</td>
+			<?php } ?>
+		</tr>
+<?php
+}
+?>
+	</tbody>
+</table>
+<?php
+		break;
+}
+?>

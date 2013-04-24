@@ -1,0 +1,15 @@
+# Set the Application Environment - Should reflect the relevant section name used in ini configuration files
+SetEnv APPLICATION_ENV development_boudewijn
+
+# Rewrite Rules for Zend Framework
+RewriteEngine On
+# Add File Names or Extentions of files that you want to be able to access
+RewriteRule !alternate.php|.(js|css|ico|bmp|gif|jpg|png|xml|xsl|eot|svg|ttf|woff)$ index.php
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule ^.*$ index.php [NC,L]
+
+# Security: Do not allow Browsing of Directories
+Options -Indexes

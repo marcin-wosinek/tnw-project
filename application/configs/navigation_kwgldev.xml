@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<nav>
+		<dashboard>
+			<label>Dashboard</label>
+			<module>kwgldev</module>
+			<controller>index</controller>
+			<action>index</action>
+		</dashboard>
+		<accounts>
+			<label>Accounts</label>
+			<module>kwgldev</module>
+			<controller>account</controller>
+			<action>index</action>
+		</accounts>
+		<acl>
+			<label>ACL</label>
+			<module>kwgldev</module>
+			<controller>acl</controller>
+			<action>index</action>
+			<pages>
+				<roles>
+					<label>Roles</label>
+					<module>kwgldev</module>
+					<controller>acl</controller>
+					<action>roles</action>
+				</roles>
+				<pageresources>
+					<label>Page Resources</label>
+					<module>kwgldev</module>
+					<controller>acl</controller>
+					<action>pageresources</action>
+				</pageresources>
+				<modelresources>
+					<label>Model Resources</label>
+					<module>kwgldev</module>
+					<controller>acl</controller>
+					<action>modelresources</action>
+				</modelresources>
+				<permissions>
+					<label>Permissions</label>
+					<module>kwgldev</module>
+					<controller>acl</controller>
+					<action>permissions</action>
+				</permissions>
+				<pageoverview>
+					<label>Page Overview</label>
+					<module>kwgldev</module>
+					<controller>acl</controller>
+					<action>pageoverview</action>
+				</pageoverview>
+				<modeloverview>
+					<label>Model Overview</label>
+					<module>kwgldev</module>
+					<controller>acl</controller>
+					<action>modeloverview</action>
+				</modeloverview>
+			</pages>
+		</acl>
+		<mail>
+			<label>Mail Templates</label>
+			<module>kwgldev</module>
+			<controller>mail</controller>
+		</mail>
+		<cache>
+			<label>Cache</label>
+			<module>kwgldev</module>
+			<controller>cache</controller>
+		</cache>
+		<logs>
+			<label>Logs</label>
+			<module>kwgldev</module>
+			<controller>logs</controller>
+		</logs>
+		<myaccount>
+			<label>my-account</label>
+			<module>admin</module>
+			<pages>
+				<password>
+					<label>Change Password</label>
+					<module>kwgldev</module>
+					<controller>index</controller>
+					<action>password</action>
+				</password>
+				<logout>
+					<label>Logout</label>
+					<module>kwgldev</module>
+					<controller>index</controller>
+					<action>logout</action>
+				</logout>
+			</pages>
+		</myaccount>
+	</nav>
+</config>

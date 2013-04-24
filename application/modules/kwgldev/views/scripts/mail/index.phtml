@@ -1,0 +1,45 @@
+<?php
+$aContent = $this->aContent;
+
+$aMailTemplateListing = null;
+if (isset($aContent['listing'])) {
+	$aMailTemplateListing = $aContent['listing'];
+}
+?>
+
+<div class="cPageHeader">
+  <h1>Mail Templates</h1>
+</div>
+
+<?php echo $this->response(); ?>
+
+<table class="cTable cTableStriped cTableBordered">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Subject</th>
+			<th class="cAlignCenter" colspan="2">
+				<a href="<?php echo $this->url(array('action' => 'create')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create</a>
+			</th>
+		</tr>
+	</thead>
+<?php if (!empty($aMailTemplateListing)) { ?>
+	<tbody>
+<?php
+	foreach ($aMailTemplateListing as $aMailTemplateDetail) {
+		$sId = $aMailTemplateDetail['id'];
+?>
+		<tr>
+			<th class="cAlignLeft"><?php echo $aMailTemplateDetail['name']; ?></th>
+			<th class="cAlignLeft"><?php echo $aMailTemplateDetail['subject']; ?></th>
+			<td class="cAlignCenter">
+				<a href="<?php echo $this->url(array('action' => 'update', 'id' => $sId,)); ?>" class="cButton cButtonWarning"><i class="cIconWhite cIconPencil"></i> Update</a>
+				<a href="<?php echo $this->url(array('action' => 'delete', 'id' => $sId,)); ?>" class="cButton cButtonDanger"><i class="cIconWhite cIconTrash"></i> Delete</a>
+			</td>
+		</tr>
+<?php
+	}
+?>
+	</tbody>
+<?php } ?>
+</table>

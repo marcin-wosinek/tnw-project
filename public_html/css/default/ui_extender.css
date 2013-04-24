@@ -1,0 +1,180 @@
+/* 
+    Document   : ui_extender
+    Created on : Aug 17, 2011, 10:59:40 AM
+    Author     : Sven
+    Description:
+        Extend styles defined in jquery ui.
+*/
+
+.ui-widget{
+    font: inherit;
+}
+body .ui-widget input, body .ui-widget select, body .ui-widget textarea, body .ui-widget button{
+    font-family: 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+    font-size: 13px;
+}
+/* extend jqury ui dialog */
+.ui-dialog{
+    padding: 0;
+}
+.ui-dialog .ui-widget-header {
+    background: none;
+}
+.ui-dialog {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border: 0;
+    -moz-box-shadow: 0 0 6px #888888;
+    -webkit-box-shadow: 0 0 6px #888888;
+    box-shadow: 0 0 6px #888888;
+}
+.ui-dialog .ui-corner-all, .ui-dialog .ui-corner-bottom, .ui-dialog .ui-corner-right, .ui-dialog .ui-corner-br {
+    border-bottom-right-radius: 0;
+}
+.ui-dialog .ui-corner-all, .ui-dialog .ui-corner-bottom, .ui-dialog .ui-corner-left, .ui-dialog .ui-corner-bl {
+    border-bottom-left-radius: 0;
+}
+.ui-dialog .ui-corner-all, .ui-dialog .ui-corner-top, .ui-dialog .ui-corner-right, .ui-dialog .ui-corner-tr {
+    border-top-right-radius: 0;
+}
+.ui-dialog .ui-corner-all, .ui-dialog .ui-corner-top, .ui-dialog .ui-corner-left, .ui-dialog .ui-corner-tl {
+    border-top-left-radius: 0;
+}
+.ui-dialog .ui-widget-header {
+    border: 0 solid #AAAAAA;
+    color: #4b637b;
+    font-weight: bold;
+}
+.ui-dialog .ui-dialog-title{
+    display: none;
+}
+.ui-dialog .ui-dialog-titlebar-close{
+    margin: 0;
+    padding: 0;
+    background: url("/css/library/images/ui-bg_glass_75_dadada_1x400.png") repeat-x scroll 50% 50% #dadada;
+    border: 1px solid #999999;
+    height: 15px;
+    width: 15px;
+    top: 3px;
+}
+.ui-icon-closethick{
+    background-position: -98px -130px;
+}
+
+.ui-dialog .ui-dialog-titlebar{
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.ui-dialog .ui-dialog-content {
+    overflow: auto;
+    margin: 12px 15px 15px 15px;
+    padding: 0;
+    position: relative;
+}
+
+.ui-dialog .ui-widget-content {
+    background: url("/css/library/images/ui-bg_glass_75_ffffff_1x400.png") repeat-x scroll 50% 50% #FFFFFF;
+    border: 0 solid #AAAAAA;
+    color: #A0A0A0;
+}
+
+.ui-dialog .ui-widget-content p{
+    margin: 2px 0;
+}
+.ui-widget-overlay {
+    background: url("/css/library/images/overlay_1x1_black.png") repeat scroll 50% 50% #666666;
+    opacity : .4;
+}
+
+/* ui buttons */
+.ui-dialog .ui-dialog-buttonpane{
+    padding: 0;
+    margin: 0px 15px 15px 15px;
+    text-align: center;
+}
+.ui-dialog .ui-dialog-buttonpane button{
+    background: #FFF url("/img/default/cButton_bg.png") repeat-x top;
+    height: 22px;
+    color:#3a556f;
+    font-size: 13px;
+    font-weight: normal;
+    border-color: #EDEDED #CDCDCD #C8C8C8 #E1E1E1;
+    border-style: solid;
+    border-width: 1px;
+    cursor:pointer;
+    display: inline-block;
+    margin: 5px;
+    padding: 0 5px 0px 3px;
+}
+.ui-dialog .ui-dialog-buttonpane button .ui-button-text{
+    margin: 0 5px;
+    padding: 0;
+}
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+    float: none;
+}
+
+/*Jquery UI Tabs customization*/
+
+/*.ui-widget-header {
+    background: none;
+    border: none;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.ui-tabs.ui-widget-content{
+    border: none;
+    margin-top: 4px;
+        width: 100%;
+}
+.cDivWhiteBoxInner{
+    overflow: hidden;
+}
+.ui-tabs .ui-tabs-nav li{
+    border-bottom: 1px;
+    padding: 2px 0px 0px 8px;
+    margin: 0;
+}
+.ui-tabs .ui-tabs-nav li a{
+    padding : 0px 10px 0px 10px;
+}
+.ui-tabs .ui-state-default, .ui-tabs .ui-widget-content .ui-state-default, .ui-tabs .ui-widget-header .ui-state-default {
+    background: none;
+    border : none;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a{
+    cursor: pointer;
+    color: #25476f;
+}
+.ui-tabs .ui-state-active a, .ui-tabs .ui-state-active a:link, .ui-tabs .ui-state-active a:visited {
+    color: #25476f;
+    font-weight: normal;
+}
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a {
+    text-align: center;
+
+}
+.ui-tabs .ui-state-default a, .ui-tabs .ui-state-default a:link, .ui-tabs .ui-state-default a:visited {
+    color: #a6a6a6;
+}
+.ui-tabs .ui-tabs-panel{
+    padding: 0;
+}*/
+/*overiding h1 style for combining with jquery UI tabs*/
+.cTabs{
+    float : left;
+    padding: 0px 15px 0px 15px;
+    border-bottom: none;
+    line-height: 39px;
+    margin-left: -10px;
+}
+/* end jquery ui dialog */

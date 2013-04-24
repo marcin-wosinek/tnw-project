@@ -1,0 +1,71 @@
+/* Element Floating */
+.cFloatLeft {
+	float: left;
+}
+.cFloatRight {
+	float: right;
+}
+/* Element Clearing */
+.cClearLeft {
+	clear: left;
+}
+.cClearRight {
+	clear: right;
+}
+.cClearBoth {
+	clear: both;
+}
+.cClearFix {
+	display: block;
+}
+.cClearFix:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+	overflow: hidden;
+}
+/* Element Display */
+.cDisplayNone {
+	display: none;
+}
+/* Element Align */
+.cAlignLeft {
+	text-align: left;
+}
+.cAlignRight {
+	text-align: right;
+}
+.cAlignCenter {
+	text-align: center;
+}
+.cAlignJustify {
+	text-align: justify;
+}
+/* Text Case */
+.cTextUppercase {
+	text-transform: uppercase;
+}
+.cTextLowercase {
+	text-transform: lowercase;
+}
+.cTextCapitalise {
+	text-transform: capitalize;
+}
+/* Element Separation */
+hr {
+	background: transparent;
+	color: #000000;
+	clear: both;
+	float: none;
+	width: 100%;
+	height: 1px;
+	margin: 0 0 10px 0;
+	border: none;
+}
+hr.cSeparatorBlank {
+  background: #FFFFFF;
+  color: #FFFFFF;
+  visibility: hidden;
+}

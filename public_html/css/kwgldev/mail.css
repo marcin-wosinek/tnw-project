@@ -1,0 +1,55 @@
+.cPNotice {
+	line-height: 20px;
+	margin: 0 0 0 10%;
+	padding: 6px 0;
+	font-weight: bold;
+}
+.cAMailBackLink {
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 0 0 10%;
+	padding: 6px 0;
+	font-weight: bold;
+}
+.cAMailBackLink span {
+	vertical-align: middle;
+}
+.cAMailBackLink img {
+	vertical-align: middle;
+}
+.cTableListing {
+	width: 90%;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+.cTableListing tbody tr:nth-child(odd) {
+	background-color: #AAC3C8;
+}
+.cTableListing tbody tr:nth-child(even) {
+	background-color: #BBD4D9;
+}
+.cTableListing th {
+	font-weight: bold;
+}
+.cTableListing th,
+.cTableListing td {
+	padding: 0.5em;
+}
+.cTableListing th a,
+.cTableListing td a {
+
+}
+.cTableListing th a span,
+.cTableListing td a span {
+	display: inline-block;
+	vertical-align: middle;
+	height: 16px;
+	line-height: 16px;
+}
+.cTableListing th a img,
+.cTableListing td a img {
+	display: inline-block;
+	vertical-align: middle;
+}

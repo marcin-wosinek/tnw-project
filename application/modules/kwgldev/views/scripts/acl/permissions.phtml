@@ -1,0 +1,131 @@
+<?php
+$aContent = $this->aContent;
+
+$sDisplay = $aContent['display'];
+$oForm = null;
+if (isset($aContent['form'])) {
+	$oForm = $aContent['form'];
+}
+//$bDeleteLink = $aContent['delete-link'];
+?>
+
+<div class="cPageHeader">
+  <h1>Permissions</h1>
+</div>
+
+<?php
+switch ($sDisplay) {
+	case 'edit-not-allowed':
+?>
+<h2>Permissions</h2>
+<p class="cPNotice">You are not permitted to edit these Permissions as they are <b>Required</b> for the system to function 'out of the box'.</p>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'type' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'create':
+?>
+<h2>Create Permissions</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'type' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'update':
+?>
+<h2>Update Permissions</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'type' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'delete':
+?>
+<h2>Delete Permissions</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'type' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'list':
+		$aPagePermissions = $aContent['page-permissions'];
+		$aModelPermissions = $aContent['model-permissions'];
+?>
+
+<table class="cTable cTableStriped cTableBordered">
+
+	<thead>
+		<tr>
+			<th colspan="5"><h3>Permissions for Page-level Resources / Privileges</h3></th>
+		</tr>
+		<tr>
+			<th>Resource</th>
+			<th>Role</th>
+			<th>Allow / Deny</th>
+			<th><a href="<?php echo $this->url(array('operation' => 'create', 'type' => 'page')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create page-level permission</a></th>
+		</tr>
+	</thead>
+<?php
+foreach ($aPagePermissions as $aPermission) {
+	$bEditAllowed = ($aPermission['edit_allowed'] == 1) ? true : false;
+	$sId = $aPermission['id'];
+	$sResourceName = $aPermission['resource_name'];
+	$sRoleName = $aPermission['role_name'];
+	$sPermission = $aPermission['permission'];
+?>
+<tr>
+	<td><?php echo $sResourceName; ?></td>
+	<td><?php echo $sRoleName; ?></td>
+	<td class="cAlignCenter"><?php echo ucfirst($sPermission); ?></td>
+	<?php if ($bEditAllowed) { ?>
+	<td class="cAlignCenter" >
+		<a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'update', 'type' => 'page')); ?>" class="cButton cButtonWarning"><i class="cIconWhite cIconPencil"></i> Update</a>
+		<a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'delete', 'type' => 'page')); ?>" class="cButton cButtonDanger"><i class="cIconWhite cIconTrash"></i> Delete</a>
+	</td>
+	<?php } else { ?>
+	<td class="cAlignCenter">N/A</td>
+	<?php } ?>
+</tr>
+<?php
+}
+?>
+	<thead>
+		<tr>
+			<th colspan="4"><h3>Permissions for Model-level Resources / Privileges</h3></th>
+		</tr>
+		<tr>
+			<th>Resource</th>
+			<th>Role</th>
+			<th>Allow/Deny</th>
+			<th><a href="<?php echo $this->url(array('operation' => 'create', 'type' => 'model')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create model-level permission</a></th>
+		</tr>
+	</thead>
+<?php
+foreach ($aModelPermissions as $aPermission) {
+	$bEditAllowed = ($aPermission['edit_allowed'] == 1) ? true : false;
+	$sId = $aPermission['id'];
+	$sResourceName = $aPermission['resource_name'];
+	$sRoleName = $aPermission['role_name'];
+	$sPermission = $aPermission['permission'];
+?>
+<tr>
+	<td><?php echo $sResourceName; ?></td>
+	<td><?php echo $sRoleName; ?></td>
+	<td class="cAlignCenter"><?php echo ucfirst($sPermission); ?></td>
+	<?php if ($bEditAllowed) { ?>
+	<td>
+		<a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'update', 'type' => 'model')); ?>" class="cButton cButtonWarning"><i class="cIconWhite cIconPencil"></i> Update</a>
+		<a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'delete', 'type' => 'model')); ?>"><img src="/img/kwgldev/_icons/delete.png" alt="Delete" /> <span>Delete</span></a>
+	</td>
+	<?php } else { ?>
+	<td class="cAlignCenter">N/A</td>
+	<?php } ?>
+</tr>
+<?php
+}
+?>
+</table>
+<?php
+		break;
+}
+?>

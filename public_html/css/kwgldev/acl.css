@@ -1,0 +1,147 @@
+.cTable .cThRoles {
+	text-align: center;
+}
+.cTable .cTdPermission {
+	text-align: center;
+}
+
+.cTdModule {
+	text-indent: 0;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+.cTdController {
+	text-indent: 1em;
+	background-color: #666666;
+	color: #FFFFFF;
+}
+.cTdAction {
+	text-indent: 2em;
+	background-color: #CCCCCC;
+}
+.cAclAllowed {
+	background-color: #468847;
+}
+.cAclDenied {
+	background-color: #B94A48;
+}
+.cAclUndefined {
+	background-color: #F89406;
+	opacity: 0.5;
+}
+
+/*
+.cPNotice {
+	line-height: 20px;
+	margin: 0 0 0 10%;
+	padding: 6px 0;
+	font-weight: bold;
+}
+.cAAclBackLink {
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	margin: 0 0 0 10%;
+	padding: 6px 0;
+	font-weight: bold;
+}
+.cAAclBackLink span {
+	vertical-align: middle;
+}
+.cAAclBackLink img {
+	vertical-align: middle;
+}
+.cTableListing {
+	width: 90%;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 2px;
+}
+.cTableListing tbody tr:nth-child(odd) {
+	background-color: #AAC3C8;
+}
+.cTableListing tbody tr:nth-child(even) {
+	background-color: #BBD4D9;
+}
+.cTableListing th {
+	font-weight: bold;
+}
+.cTableListing th,
+.cTableListing td {
+	padding: 0.5em;
+}
+.cTableListing th a,
+.cTableListing td a {
+
+}
+.cTableListing th a span,
+.cTableListing td a span {
+	display: inline-block;
+	vertical-align: middle;
+	height: 16px;
+	line-height: 16px;
+}
+.cTableListing th a img,
+.cTableListing td a img {
+	display: inline-block;
+	vertical-align: middle;
+}
+.cDivAclOverview {
+	width: 90%;
+	margin: 0 auto;
+	overflow: auto;
+}
+.cTableAclOverview {
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 4px;
+}
+.cTableAclOverview th {
+	font-weight: bold;
+}
+.cTableAclOverview th,
+.cTableAclOverview td {
+	padding: 0.5em;
+}
+.cThRoles {
+	width: 75px;
+	background-color: #000000;
+	color: #FFFFFF;
+	text-transform: capitalize;
+}
+.cThResources,
+.cTdResources {
+	width: 250px;
+}
+.cTdResources {
+	text-transform: capitalize;
+}
+.cTdModule {
+	text-indent: 0;
+	background-color: #000000;
+	color: #FFFFFF;
+}
+.cTdController {
+	text-indent: 1em;
+	background-color: #666666;
+	color: #FFFFFF;
+}
+.cTdAction {
+	text-indent: 2em;
+	background-color: #CCCCCC;
+
+}
+.cTdPermission {
+	width: 75px;
+	text-align: center;
+}
+.cAclAllowed {
+	background-color: #CCFFCC;
+}
+.cAclDenied {
+	background-color: #FF9999;
+}
+.cAclUndefined {
+	background-color: #FFFFCC;
+}
+*/

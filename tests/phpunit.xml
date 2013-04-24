@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="TestHelper.php">
+    <testsuite name="My Test Suite">
+        <directory>./</directory>
+		<directory>/application/</directory>
+    </testsuite>
+
+    <filter>
+        <whitelist>
+            <!--<directory suffix=".php">../library/</directory>-->
+            <directory suffix=".php">../application/</directory>
+            <exclude>
+                <directory suffix=".phtml">../application/</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="./logs/coverage" charset="UTF-8"
+            yui="true" highlight="true"
+            lowUpperBound="50" highLowerBound="80"/>
+        <log type="testdox-html" target="./log/testdox.html" />
+    </logging>
+</phpunit>

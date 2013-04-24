@@ -1,0 +1,28 @@
+<div class="cDivZendFormWrapper">
+	<!--<form <?php echo $this->render('forms/partials/form_attributes.phtml'); ?>>-->
+	<form <?php echo $this->formAttributes($this); ?>>
+		<?php echo $this->csrfHash($this); ?>
+		<?php
+		foreach($this->element as $oElement) {
+			if ($oElement instanceof Zend_Form_Element_Hash) {
+				// Ignore CSRF Hash Element as it is handled by the csrfHash View Helper above
+				continue;
+			}
+			if ($oElement instanceof Zend_Form_Element_Submit) {
+				?>
+				<p><?php echo $oElement; ?></p>
+				<?php
+			}
+			elseif ($oElement instanceof Zend_Form_Element_Hash || $oElement instanceof Zend_Form_Element_Hidden) {
+				echo $oElement;
+			}
+			else {
+				?>
+					<label><?php echo $oElement->getLabel(); ?></label>
+					<div class="cDivElement"><?php echo $oElement; ?></div>
+				<?php
+			}
+		}
+		?>
+	</form>
+</div>

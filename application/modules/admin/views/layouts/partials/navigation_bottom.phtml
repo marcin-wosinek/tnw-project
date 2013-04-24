@@ -1,0 +1,15 @@
+<?php
+	$aNavigation = $this->navigation();
+?>
+<!-- Beginning Menu Section -->
+<ul id='iUlAdminNavigation'>
+<?php foreach($aNavigation['menu'] as $aMenu) : ?>
+	<?php
+	$bMenuActive = $aNavigation['controller'] == $aMenu['controller'];
+	$sClassMenuActive = ($bMenuActive) ? ' cActive' : '';
+	?>
+	<li id='iLiMenu<?php echo ucwords($aMenu['controller']); ?>' class='cLiMenu<?php echo $sClassMenuActive; ?>'>
+		<a href='<?php echo $this->escape($aMenu['url']); ?>' title='<?php echo $this->escape($aMenu['title']); ?>'><?php echo $this->escape($aMenu['title']); ?></a>
+	</li>
+<?php endforeach; ?>
+</ul>

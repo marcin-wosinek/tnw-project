@@ -1,0 +1,65 @@
+<div class="cRow">
+
+	<div class="cSpan03 cDivPaginationPageOfPage">Page <?php echo $this->current; ?> of <?php echo $this->last; ?>.</div>
+
+	<div class="cSpan09">
+		<div class="cPagination cPaginationRight">
+			<ul>
+
+<?php if (isset($this->previous)): ?>
+				<li>
+					<a href="<?php echo $this->url(array('page' => $this->first)); ?>"><i class="cIconFastBackward" title="First"></i></a>
+				</li>
+<?php else: ?>
+				<li class="cDisabled">
+					<a href=""><i class="cIconFastBackward" title="First"></i></a>
+				</li>
+<?php endif; ?>
+
+<?php if (isset($this->previous)): ?>
+				<li>
+					<a href="<?php echo $this->url(array('page' => $this->previous)); ?>"><i class="cIconBackward" title="Previous"></i></a>
+				</li>
+<?php else: ?>
+				<li class="cDisabled">
+					<a href=""><i class="cIconBackward" title="Previous"></i></a>
+				</li>
+<?php endif; ?>
+
+<?php foreach ($this->pagesInRange as $page): ?>
+	<?php if ($page != $this->current): ?>
+				<li>
+					<a href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a>
+				</li>
+	<?php else: ?>
+				<li class="cActive">
+					<a href="" title="Displaying Page <?php echo $this->current; ?> of <?php echo $this->last; ?>"><?php echo $page; ?></a>
+				</li>
+	<?php endif; ?>
+<?php endforeach; ?>
+
+<?php if (isset($this->next)): ?>
+				<li>
+					<a href="<?php echo $this->url(array('page' => $this->next)); ?>"><i class="cIconForward" title="Next"></i></a>
+				</li>
+<?php else: ?>
+				<li class="cDisabled">
+					<a href=""><i class="cIconForward" title="Next"></i></a>
+				</li>
+<?php endif; ?>
+
+<?php if (isset($this->next)): ?>
+				<li>
+					<a href="<?php echo $this->url(array('page' => $this->last)); ?>"><i class="cIconFastForward" title="Last"></i></a>
+				</li>
+<?php else: ?>
+				<li class="cDisabled">
+					<a href=""><i class="cIconFastForward" title="Last"></i></a>
+				</li>
+<?php endif; ?>
+
+			</ul>
+		</div>
+	</div>
+
+</div>

@@ -1,0 +1,80 @@
+<?php
+	$aSideBarListing = $this->aSideBar;
+	$iSideBarPage = $this->iSideBarPage;
+	if (!empty ($iSideBarPage)) {
+		$iSideBarPage = intval($iSideBarPage);
+	} else {
+		$iSideBarPage = 0;
+	}
+	$iItemsInBar = 10;
+	$iPage = 0;
+	$iCount = 0;
+	
+	if (!empty($aSideBarListing)) {
+
+		$iTotal = count($aSideBarListing);
+		
+		if ($iTotal > $iItemsInBar) {
+	
+?>
+			<div id="iDivPaginationbar">
+				<span class="cSpanPrevious"><a href="#">&lt; previous</a></span>
+				<span class="cSpanNext"><a href="#">next &gt;</a></span>
+			</div>
+<?php
+		}
+		
+
+		echo "<input type='hidden' id='iHiddenItemsInBar' value='".$iItemsInBar."'>";
+		echo "<input type='hidden' id='iHiddenSidebarCount' value='".$iTotal."'>";
+		echo "<input type='hidden' id='iHiddenSidebarPage' value='".$iSideBarPage."'>";
+		echo "<ul id='iULSideBar'>";
+		foreach ($aSideBarListing as $aSideBarDetail)  :
+
+			$iPage = intval($iCount / $iItemsInBar);
+			$sUrl = $aSideBarDetail['url'];
+			if ($iPage > 0) {
+				$sUrl .= "/page/".$iPage;
+			}
+
+			$sDisplay = '';
+			// only show items in iSideBarPage (0..n)
+			if ($iCount < $iSideBarPage * $iItemsInBar || $iCount >= ($iSideBarPage + 1) * $iItemsInBar) {
+				$sDisplay = "style='display:none'";
+			}
+			echo "<li id='iItemNumber".$iCount."' ".$sDisplay.">";
+			echo "<a href='".$sUrl."' class='title'>";
+			echo stripslashes($aSideBarDetail['title']);
+			if (array_key_exists('subtitle', $aSideBarDetail)) {
+				echo "<span class='subtitle'>".stripslashes($aSideBarDetail['subtitle'])."</span>";
+			}
+			if (array_key_exists('publish', $aSideBarDetail)) {
+				$sChecked = '';
+				if ($aSideBarDetail['publish'] == '1')
+					$sChecked = 'checked';
+				echo "<span class='publish'><br>Publish: <input type='checkbox' value='1'".$sChecked." disabled==true /></span>";
+			}
+			echo "</a>";
+			if (array_key_exists('delete', $aSideBarDetail)) {
+				echo "<a href='#' onclick='deleteRow(".$aSideBarDetail['id']."); return false;' class='delete_link' rel='".$aSideBarDetail['id']."'></a>";
+			}
+			echo "</li>";
+
+			$iCount++;
+
+		endforeach;
+	
+		echo "</ul>";
+
+		if ($iTotal > $iItemsInBar) {
+		
+?>
+			<div id="iDivPaginationbar">
+				<span class="cSpanPrevious"><a href="#">&lt; previous</a></span>
+				<span class="cSpanNext"><a href="#">next &gt;</a></span>
+			</div>
+<?php
+		}
+
+	}
+?>

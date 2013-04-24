@@ -1,0 +1,75 @@
+/* 16-Column Layout */
+.cContainer-16 {
+	width: 950px;
+	margin: 0 auto;
+}
+.cGrid-01,
+.cGrid-02,
+.cGrid-03,
+.cGrid-04,
+.cGrid-05,
+.cGrid-06,
+.cGrid-07,
+.cGrid-08,
+.cGrid-09,
+.cGrid-10,
+.cGrid-11,
+.cGrid-12,
+.cGrid-13,
+.cGrid-14,
+.cGrid-15,
+.cGrid-16 {
+	float: left;
+	margin-right: 20px;
+}
+.cLast {
+	margin-right: 0;
+}
+.cContainer-16 .cGrid-01 {
+	width: 40px;
+}
+.cContainer-16 .cGrid-02 {
+	width: 100px;
+}
+.cContainer-16 .cGrid-03 {
+	width: 160px;
+}
+.cContainer-16 .cGrid-04 {
+	width: 220px;
+}
+.cContainer-16 .cGrid-05 {
+	width: 280px;
+}
+.cContainer-16 .cGrid-06 {
+	width: 340px;
+}
+.cContainer-16 .cGrid-07 {
+	width: 400px;
+}
+.cContainer-16 .cGrid-08 {
+	width: 460px;
+}
+.cContainer-16 .cGrid-09 {
+	width: 520px;
+}
+.cContainer-16 .cGrid-10 {
+	width: 580px;
+}
+.cContainer-16 .cGrid-11 {
+	width: 640px;
+}
+.cContainer-16 .cGrid-12 {
+	width: 700px;
+}
+.cContainer-16 .cGrid-13 {
+	width: 760px;
+}
+.cContainer-16 .cGrid-14 {
+	width: 820px;
+}
+.cContainer-16 .cGrid-15 {
+	width: 880px;
+}
+.cContainer-16 .cGrid-16 {
+	width: 940px;
+}

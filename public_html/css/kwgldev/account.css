@@ -1,0 +1,15 @@
+.cAListingDropdownToggle {
+	color: #000000;
+}
+.cAListingDropdownToggle:hover {
+	color: #000000;
+	text-decoration: none;
+}
+.cDropdown.cOpen .cDropdownToggle.cAListingDropdownToggle {
+	background: none;
+	color: #000000;
+}
+
+.cUlListingDropdown li:hover .cIcon {
+    background-image: url("/css/library/bootstrap/glyphicons-halflings-white.png");
+}

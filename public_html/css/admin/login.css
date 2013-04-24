@@ -1,0 +1,120 @@
+html {
+}
+body {
+	background: #383838 url("../../images/admin/bg_login.jpg") repeat-x top center;
+	font: 62.5% "Lucida Sans Unicode", "Trebuchet Ms", Helvetica, Arial;
+	margin: 0;
+	padding: 0;
+	/*overflow-y: scroll;*/
+	height: 100.2%;
+}
+#iDivContainer {
+	margin: 0 auto;
+	padding: 0;
+	width: 100%;
+}
+#iDivLoginHeader {
+	margin: 20px auto 0 auto;
+	padding: 0;
+	width: 50%;
+	height: 50px;
+	text-align: center;
+        color:#FFF;
+}
+#iDivLoginHeader h1 {
+	font-size: 4em;
+	margin: 0;
+	padding: 0;
+}
+#iDivLoginOuterContainer {
+	margin: 53px auto 0 auto;
+	padding: 0;
+	width: 431px;
+	height: 180px;
+}
+#iDivLoginContainer {
+	background: #FFFFFF url("../../images/admin/bg_login_panel.gif") repeat-x;
+	margin: 0;
+	padding: 1em 1.5em	;
+}
+#iDivLoginContainer h2 {
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 2.4em;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+#iPForgotPassword {
+	color: #000000;
+	float: right;
+	font-size: 1.2em;
+}
+#iPForgotPassword a {
+	color: #000000;
+	text-decoration: none;
+}
+#iPForgotPassword a:hover,
+#iPForgotPassword a:active,
+#iPForgotPassword a:visited {
+	color: #666666;
+}
+#iDivLoginContainer form {
+	clear: both;
+	margin: 0 0 0 0;
+	padding: 10px 0 0 0;
+}
+#iDivUsername {
+	float: left;
+	width: 50%;
+}
+#iDivUsername label,
+#iDivPassword label {
+	font-size: 1.6em;
+	color: #8E9474;
+}
+#iDivUsername span,
+#iDivPassword span {
+	background: url(../../images/admin/bg_small_input.gif) no-repeat;
+	width: 168px;
+	padding: 4px 6px 0px 6px;
+	height: 23px;
+	display: block;
+	margin: 1em 0 0 0;
+}
+#iDivUsername input,
+#iDivPassword input {
+	background: none;
+	border: none;
+	font-size: 1.2em;
+	color: #666666;
+	margin: 0;
+	padding: 0;
+	height: 1.5em;
+}
+#iDivPassword {
+	float: left;
+	width: 50%;
+}
+#iDivSubmit {
+	clear: both;
+	margin: 0 12px 0 0;
+	padding: 1.5em 0 0 0;
+	text-align: right;
+}
+#iDivSubmit button {
+	background: none;
+	border: none;
+	
+}
+/* Hack for FireFox to hide the outline when clicking on the button */
+#iDivSubmit button:focus::-moz-focus-inner {
+	border-color: transparent ! important;
+}
+
+.cPLoginResponse {
+	margin: 10px auto;
+	padding: 0;
+	font-size: 1.3em;
+	font-weight: bold;
+}

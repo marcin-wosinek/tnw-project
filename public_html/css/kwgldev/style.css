@@ -1,0 +1,14 @@
+#iDivNavigationContainer {
+	margin-top: 16px;
+}
+#iDivBodyContainer {
+	margin-bottom: 16px;
+}
+
+.cDivPaginationPageOfPage {
+	height: 36px;
+	line-height: 36px;
+	margin-top: 18px;
+	margin-bottom: 18px;
+	text-indent: 0.5em;
+}

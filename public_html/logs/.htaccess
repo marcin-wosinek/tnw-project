@@ -1,0 +1,20 @@
+# The Auth User File Path should be the absolute path
+# Example:
+#	/home/user2/var/.htpasswd										(on Unix-based Servers)
+#	C:\webserver\Apache2.2\htdocs\nfw\Trunk\public_html\.htpasswd	(on Windows-based Servers)
+AuthUserFile C:\webserver\Apache2.2\htdocs\nfw\Trunk\public_html\.htpasswd
+AuthName "Error Logs - Developers Only"
+AuthType Basic
+
+require valid-user
+
+# Rewrite Rules for Accessing Logs
+#RewriteEngine On
+
+#RewriteCond !.(xls)$ index.php
+#RewriteRule ^([0-9]+)/([0-9]+)/([0-9]+)/(\w+)(\.*[\w]*)$ index.php?y=$1&m=$2&d=$3&l=$4 [NC,L]
+
+
+# Security: Do not allow Browsing of Directories
+#Options -Indexes
+

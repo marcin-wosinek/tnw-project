@@ -1,0 +1,86 @@
+<?php
+$aContent = $this->aContent;
+$sDisplay = $aContent['display'];
+$oForm = $aContent['form'];
+$aResourceDetails = $aContent['resource'];
+/*
+$aContent = $this->aContent;
+$aPrivileges = $aContent['privileges'];
+$oForm = $aContent['form'];
+*/
+?>
+<?php
+switch ($sDisplay) {
+	case 'create':
+?>
+<h2>Create Privileges for Resource - <?php echo $aResourceDetails['name']; ?></h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'update':
+?>
+<h2>Update Privileges for Resources - <?php echo $aResourceDetails['name']; ?></h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'delete':
+?>
+<h2>Delete Privileges for Resources - <?php echo $aResourceDetails['name']; ?></h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'list':
+		$aPrivileges = $aContent['privileges'];
+?>
+<h2>List of Privileges in <?php echo $aResourceDetails['name']; ?></h2>
+<?php echo $this->backLink($this->url(array('action' => 'modelresources', 'operation' => null, 'id' => $aResourceDetails['id'])), 'Back to Resource'); ?>
+<table class="cTable cTableStriped cTableBordered">
+	<thead>
+		<tr>
+			<th>Resource Name</th>
+			<th>Privilege Name</th>
+			<th>&nbsp;</th>
+			<th><a href="<?php echo $this->url(array('operation' => 'create')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create</a></th>
+		</tr>
+	</thead>
+<?php
+foreach ($aPrivileges as $aPrivilege) {
+
+	$sId = $aPrivilege['id'];
+	$sResourceName = $aPrivilege['resource_name'];
+	$sPrivilegeName = $aPrivilege['name'];
+	if ($sPrivilegeName == '') {
+		$sPrivilegeName = '-';
+	}
+	$bEditAllowed = ($aPrivilege['edit_allowed'] == 1) ? true : false;
+
+?>
+	<tbody>
+		<tr>
+			<td><?php echo $sResourceName; ?></td>
+			<td><?php echo $sPrivilegeName; ?></td>
+			<?php if ($bEditAllowed) { ?>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'update')); ?>"><img src="/img/kwgldev/_icons/pencil.png" alt="Update" /> <span>Update</span></a></td>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'delete')); ?>"><img src="/img/kwgldev/_icons/delete.png" alt="Delete" /> <span>Delete</span></a></td>
+			<?php } else { ?>
+			<td class="cAlignCenter" colspan="2">N/A</td>
+			<?php } ?>
+		</tr>
+	</tbody>
+
+
+<?php
+}
+?>
+
+</table>
+<?php
+		break;
+}
+?>

@@ -1,0 +1,81 @@
+<?php
+$aContent = $this->aContent;
+$sDisplay = $aContent['display'];
+$oForm = $aContent['form'];
+?>
+
+<div class="cPageHeader">
+  <h1>Model Resources</h1>
+</div>
+
+<?php
+switch ($sDisplay) {
+	case 'create':
+?>
+<h2>Create Model-Level Resources</h2>
+
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'update':
+?>
+<h2>Update Model-Level Resources</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'delete':
+?>
+<h2>Delete Model-Level Resources</h2>
+<?php echo $oForm; ?>
+<br class="cBRClear" />
+<?php echo $this->backLink($this->url(array('operation' => null, 'id' => null))); ?>
+<?php
+		break;
+	case 'list':
+		$aResources = $aContent['resources'];
+?>
+<h2>List of Resources</h2>
+<table class="cTable cTableStriped cTableBordered">
+	<thead>
+		<tr>
+			<th>Resource Name</th>
+			<th>Resource Parent</th>
+			<th colspan="2"><a href="<?php echo $this->url(array('operation' => 'create')); ?>" class="cButton cButtonSuccess"><i class="cIconWhite cIconAsterisk"></i> Create new model resource</a></th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+foreach ($aResources as $aResource) {
+
+	$sId = $aResource['id'];
+	$sResourceName = $aResource['name'];
+	$sResourceParent = $aResource['parent'];
+	if (is_null($sResourceParent)) {
+		$sResourceParent = '-';
+	}
+	$bEditAllowed = ($aResource['edit_allowed'] == 1) ? true : false;
+?>
+		<tr>
+			<td><?php echo $sResourceName; ?></td>
+			<td><?php echo $sResourceParent; ?></td>
+			<?php if ($bEditAllowed) { ?>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('action' => 'privileges', 'resourceid' => $sId, 'id' => null, 'operation' => null)); ?>"><img src="/img/kwgldev/_icons/key.png" alt="Manage Privileges" /> <span>Privileges</span></a></td>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'update')); ?>" class="cButton cButtonWarning"><i class="cIconWhite cIconPencil"></i> Update</a></td>
+			<td class="cAlignCenter" ><a href="<?php echo $this->url(array('id' => $sId, 'operation' => 'delete')); ?>" class="cButton cButtonDanger"><i class="cIconWhite cIconTrash"></i> Delete</a></td>
+			<?php } else { ?>
+			<td class="cAlignCenter" colspan="3">N/A</td>
+			<?php } ?>
+		</tr>
+<?php
+}
+?>
+	</tbody>
+</table>
+<?php
+		break;
+}
+?>

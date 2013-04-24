@@ -1,0 +1,14 @@
+<?php
+$aContent = $this->aContent;
+$oForm = $aContent['form'];
+?>
+
+<div class="cPageHeader">
+  <h1>Mail Templates</h1>
+</div>
+
+<?php echo $this->response(); ?>
+
+<?php echo $oForm; ?>
+
+<?php echo $this->backLink($this->url(array('action' => null, 'id' => null))); ?>

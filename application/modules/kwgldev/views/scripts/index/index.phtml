@@ -1,0 +1,16 @@
+<?php
+$aContent = $this->aContent;
+
+$oForm = $aContent['form'];
+
+$sNotice = $aContent['notice'];
+?>
+
+<?php if ($sNotice != '') { ?>
+<div class="cAlert">
+  <button class="cClose" data-dismiss="alert">×</button>
+  <strong>Warning!</strong> <?php echo $sNotice; ?>
+</div>
+<?php } ?>
+
+<?php echo $oForm; ?>

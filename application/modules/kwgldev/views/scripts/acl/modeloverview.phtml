@@ -1,0 +1,117 @@
+<?php
+$aContent = $this->aContent;
+$aOverview = $aContent['overview'];
+$aRoles = $aContent['roles'];
+$iRoles = count($aRoles);
+//Zend_Debug::dump($aOverview);
+
+$sAclAllowedClass = 'cAclAllowed';
+$sAclDeniedClass = 'cAclDenied';
+$sAclUndefinedClass = 'cAclUndefined';
+
+?>
+<h2>Model-Level Access Overview</h2>
+<div class="cDivAclOverview">
+
+<table class="cTable cTableBordered cTableAclOverview">
+	<thead>
+		<tr>
+			<th rowspan="2" class="cThResources">Resource/Privilege</th>
+			<th colspan="<?php echo $iRoles; ?>">Roles</th>
+		</tr>
+		<tr>
+<?php foreach ($aRoles as $iRoleId => $sRoleName) { ?>
+			<th class="cThRoles"><?php echo $sRoleName; ?></th>
+<?php } ?>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+foreach ($aOverview as $sResourceName => $aResourceDetails) {
+	$aPermissions = $aResourceDetails['acl-permissions'];
+	$aPrivileges = $aResourceDetails;
+	unset($aPrivileges['acl-permissions']);
+?>
+		<!-- Resource Basic Row Start -->
+		<tr>
+			<td class="cTdResources cTdModule"><?php echo $sResourceName; ?></td>
+<?php
+	foreach ($aRoles as $iRoleId => $sRole) {
+		if ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_ALLOWED) {
+			// Allowed
+			$bAllowed = true;
+			$sPermissionClass = $sAclAllowedClass;
+			$sImage = '/img/kwgldev/_icons/tick.png';
+			$sText = 'Allowed';
+		} elseif ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_DENIED) {
+			// Denied
+			$bAllowed = false;
+			$sPermissionClass = $sAclDeniedClass;
+			$sImage = '/img/kwgldev/_icons/cross.png';
+			$sText = 'Denied';
+		} else {
+			// Undefined
+			$sPermissionClass = $sAclUndefinedClass;
+			$sImage = '/img/kwgldev/_icons/error.png';
+			$sText = 'Resource/Privilege has no relation with Role';
+		}
+?>
+			<td class="cTdPermission <?php echo $sPermissionClass; ?>"><img src="<?php echo $sImage; ?>" alt="<?php echo $sText; ?>" title="<?php echo $sText; ?>" /></td>
+<?php
+	}
+?>
+		</tr>
+		<!-- Resource Basic Row End -->
+		<!-- Controller Rows for Module Start -->
+<?php
+	foreach ($aPrivileges as $sPrivilegeName => $aPrivilegeDetails) {
+		$aPermissions = $aPrivilegeDetails['acl-permissions'];
+
+?>
+		<!-- Controller Row Start -->
+		<tr>
+			<td class="cTdResources cTdController"><?php echo $sPrivilegeName; ?></td>
+<?php
+		foreach ($aRoles as $iRoleId => $sRole) {
+			if ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_ALLOWED) {
+				// Allowed
+				$bAllowed = true;
+				$sPermissionClass = $sAclAllowedClass;
+				$sImage = '/img/kwgldev/_icons/tick.png';
+				$sText = 'Allowed';
+			} elseif ($aPermissions[$sRole] == Model_Kwgldev_Acl::PERMISSION_DENIED) {
+				// Denied
+				$bAllowed = false;
+				$sPermissionClass = $sAclDeniedClass;
+				$sImage = '/img/kwgldev/_icons/cross.png';
+				$sText = 'Denied';
+			} else {
+				// Undefined
+				$sPermissionClass = $sAclUndefinedClass;
+				$sImage = '/img/kwgldev/_icons/error.png';
+				$sText = 'Resource/Privilege has no relation with Role';
+			}
+?>
+			<td class="cTdPermission <?php echo $sPermissionClass; ?>"><img src="<?php echo $sImage; ?>" alt="<?php echo $sText; ?>" title="<?php echo $sText; ?>" /></td>
+<?php
+		}
+?>
+		</tr>
+		<!-- Controller Row End -->
+<?php
+	}
+?>
+		<!-- Controller Rows for Module End -->
+		<tr>
+			<th class="cThResources">Resource/Privilege</th>
+<?php foreach ($aRoles as $iRoleId => $sRoleName) { ?>
+			<th class="cThRoles"><?php echo $sRoleName; ?></th>
+<?php } ?>
+		</tr>
+<?php
+}
+?>
+	</tbody>
+</table>
+
+</div>

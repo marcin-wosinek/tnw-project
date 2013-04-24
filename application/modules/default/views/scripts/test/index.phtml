@@ -1,0 +1,63 @@
+
+<script>
+
+	Kwgl.translator.set(<?php echo json_encode($this->translations) ?>);
+
+//create new message type
+Kwgl.msg.createTemplate('alert', {
+	listClass: 'list',
+	template: '<div class="error"><img src="alert.png" /></div><div>%BODY%</div>'
+});
+//Kwgl.msg.createTemplate('success', {
+//	listClass: 'listsuccess',
+//	template: '<div class="success">%BODY%</div>'
+//});
+
+//register static
+var oInit = Kwgl.init({
+
+	oPror: 'class property',
+
+	init: function(){
+
+		//this.testRequest();
+
+		Kwgl.msg.success('ok message');
+		Kwgl.msg.alert('<img src="" />ok message');
+		//Kwgl.msg.popup('<p>here goes the content for popup</p>');
+//		$('form').ajaxSubmit({
+//			url: '/test/xhr/',
+//			success: function(resp){
+//				console.log(resp)
+//			}
+//		});
+		
+		$('form').ajaxSubmit('destroy');
+
+	},
+
+	testRequest: function(){
+
+		Kwgl.xhr.send('/xhrdefault/test/index/', 'data=data', function(response){
+
+
+
+		}, {
+			complete		: function(){ console.log('Request completed') } ,//on request complete
+			loadingScreen	: true, //true if loading screen is on
+			startLoaderAfter: 20, //miliseconds to start the loader
+			getLoader		: 'small', //function to get the loading screen jquery object
+			context			: 'body' //ajax loading context
+		});
+
+	}
+
+});
+
+</script>
+
+<div id="new"></div>
+
+<?php echo $this->form ?>
+
+<?php //echo $this->formSumting ?>

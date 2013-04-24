@@ -1,0 +1,11 @@
+<?php
+$aContent = $this->aContent;
+?>
+<div class="cPageHeader">
+  <h1><?php echo $aContent['header']; ?></h1>
+</div>
+
+<?php echo $this->response(false); ?>
+
+<?php if (isset($aContent['trace'])) { ?><pre><?php echo $aContent['trace']; ?></pre><?php } ?>
+<?php if (isset($aContent['sql'])) { ?><pre><?php echo $aContent['sql']; ?></pre><?php } ?>
