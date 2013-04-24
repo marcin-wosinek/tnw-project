@@ -95,5 +95,7 @@ class IndexController extends Kwgl_Controller_Action {
 
 	}
 
+	public function visualizationAction () {
+  }
 
 }
