@@ -25,7 +25,7 @@ INSERT INTO `framework`.`sys_role_resource_privilege` (
 `id_sys_role` ,
 `id_sys_resource_privilege` ,
 `permission` ,
-`edit_allowed`
+ `edit_allowed`
 )
 VALUES (
 NULL , '1', '5', 'allow', '1'
