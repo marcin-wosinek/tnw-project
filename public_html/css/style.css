@@ -4,6 +4,9 @@
 
 body {
   text-align: center;
+	background: #eee url(/img/backgroundhome.png);
+  background-repeat: no-repeat;
+  background-position: center top;
 }
 
 h1 {
@@ -32,4 +35,9 @@ h2 {
   width: 300px;
   float: left;
   padding-top: 50px;
+}
+
+#visualizationContainer {
+  width: 800px;
+  margin: auto;
 }
