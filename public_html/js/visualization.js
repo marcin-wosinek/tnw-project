@@ -14,6 +14,14 @@ $(function () {
           element.y = element.points;
         });
 
+        data = _.filter(data, function (element) {
+          return element.firstname != 'private';
+        });
+
+        data = _.sortBy(data, function (element) {
+          return -element.y;
+        });
+
         data = _.sortBy(data, function (element) {
           return -element.y;
         });
