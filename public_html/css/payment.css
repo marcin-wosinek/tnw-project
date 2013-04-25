@@ -1,0 +1,30 @@
+body {
+	background: #eee url(/img/gray_jean.png);
+}
+.login {
+	margin-top: 12px;
+}
+.content {
+	margin: 8em 0;
+}
+.jumbotron {
+	text-align: center;
+}
+.jumbotron h1 {
+	font-size: 72px;
+	line-height: 1;
+}
+.jumbotron .btn {
+	font-size: 21px;
+}
+.donate .btn {
+	text-align: center;
+	margin-top: 70px;
+}
+.custom input{
+		padding: 10px;
+	}
+	.custom .small {
+		padding: 12px;
+	}
+
