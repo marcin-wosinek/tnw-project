@@ -30,7 +30,7 @@ $(function () {
                 type: 'column'
             },
             title: {
-                text: 'The most successful networks'
+                text: 'Donate more & make connections!'
             },
             xAxis: {
                 categories: categories
