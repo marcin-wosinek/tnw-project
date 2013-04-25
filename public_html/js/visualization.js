@@ -1,6 +1,10 @@
 $(function () {
   var displayChart = function (dataRaw) {
-        var colors = Highcharts.getOptions().colors,
+        var colors = ['#EAB803',
+                      '#4E66B0',
+                      '#96B401',
+                      '#DD2D83',
+                      '#5BBDB9'],
             categories = [],
             name = 'Money raised';
 
@@ -17,7 +21,7 @@ $(function () {
         data = _.first(data, 5);
 
         _.each(data, function (element, index) {
-          element.color = colors[index + 1];
+          element.color = colors[index];
           categories.push(element.firstname + " " + element.lastname.charAt(0));
         });
 
