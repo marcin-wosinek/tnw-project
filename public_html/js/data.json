@@ -1,0 +1,39 @@
+{
+    "name": "root",
+    "children": [{
+        "name": "app",
+        "children": [{
+            "name": "dashboard",
+            "children": [{
+                "name": "public",
+                "children": [{
+                    "name": "stylesheets",
+                    "children": [{
+                        "name": "bootstrap.css",
+                        "children": [{
+                                "name": "bootstrap-baby.css",
+                                "size": 1000,
+                                "language": "CSS"
+                        }],
+                        "size": 945,
+                        "language": "CSS"
+                    }, {
+                        "name": "style.css",
+                        "size": 254,
+                        "language": "CSS"
+                    }, {
+                        "name": "jquery.tagsinput.css",
+                        "size": 7,
+                        "language": "CSS"
+                    }],
+                    "size": 15206
+                }],
+                "size": 45714
+            }],
+            "size": 5840
+        }],
+        "size": 6126
+    }],
+    "nbFiles": 81,
+    "size": 8778
+}

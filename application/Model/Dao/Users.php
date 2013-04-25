@@ -12,7 +12,7 @@ class Dao_Users extends Kwgl_Db_Table {
         
         $select = new Zend_Db_Select(Zend_Registry::get(DB));
         $select->from(array('c' => 'connections'),array(''));
-        $select->joinLeft(array('u' => 'users'), 'u.id = c.connectionId',array('firstName','lastName','id','headLine','pictureUrl'));
+        $select->joinLeft(array('u' => 'users'), 'u.id = c.connectionId',array('firstName','lastName','id','headLine','pictureUrl','numConnections'));
         $select->where("c.ownerId = ?", $ownerId);
         
         //echo $select->__toString();

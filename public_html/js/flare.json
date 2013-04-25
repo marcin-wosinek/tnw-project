@@ -1,0 +1,55 @@
+{
+ "name": "flare",
+ "children": [
+  {
+     "name": "topfive",
+     "children": [
+      {"name": "Marcin", "size": 100},
+      {"name": "Tristan", "size": 150},
+      {"name": "Valentina", "size": 200},
+      {"name": "Justyna", "size": 80},
+      {"name": "Kamila", "size": 400}
+    ]
+  },
+  {
+     "name": "topten",
+     "children": [
+      {"name": "Sander", "size": 300},
+      {"name": "Ruben", "size": 400},
+      {"name": "Rudy", "size": 300},
+      {"name": "Hanna", "size": 200},
+      {"name": "Boudewijn", "size": 100}
+    ]
+  },
+  {
+     "name": "topfifteen",
+     "children": [
+      {"name": "Pascal", "size": 200},
+      {"name": "Jerome", "size": 50},
+      {"name": "Michel", "size": 100},
+      {"name": "Jannette", "size": 150},
+      {"name": "Aurelie", "size": 100}
+   ]
+  },
+  {
+     "name": "toptwenty",
+     "children": [
+      {"name": "Pascal", "size": 200},
+      {"name": "Jerome", "size": 50},
+      {"name": "Michel", "size": 100},
+      {"name": "Jannette", "size": 150},
+      {"name": "Aurelie", "size": 100}
+   ]
+  },
+  {
+     "name": "toptwentyfive",
+     "children": [
+      {"name": "Pascal", "size": 200},
+      {"name": "Jerome", "size": 50},
+      {"name": "Michel", "size": 100},
+      {"name": "Jannette", "size": 150},
+      {"name": "Aurelie", "size": 100}
+   ]
+  }
+ ]
+}

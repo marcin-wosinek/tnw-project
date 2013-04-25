@@ -113,27 +113,82 @@ class DonateController extends Kwgl_Controller_Action {
                 $connectionUsers = $daoUsers->getConnectionUsersByOwnerId($ownerId);
 
                 foreach($connectionUsers AS $connectionUser){
-                    $userScores[$connectionUser["id"]]["points"] += $donations["amount"]/5;
+                    
+                    $random = rand(1,5);
+                    
+                    $userScores[$connectionUser["id"]]["points"] += $donations["amount"];
                     $userScores[$connectionUser["id"]]["firstname"] = $connectionUser["firstName"];
                     $userScores[$connectionUser["id"]]["lastname"] = $connectionUser["lastName"];
                     $userScores[$connectionUser["id"]]["picture"] = $connectionUser["pictureUrl"];
                     $userScores[$connectionUser["id"]]["headline"] = $connectionUser["headLine"];
+                    $userScores[$connectionUser["id"]]["numconnections"] = $connectionUser["numConnections"];
+                
                 }
 
-                $userData = $daoUsers->fetchDetail(array("firstName","lastName","headLine","pictureUrl"), array("id = ?" => $ownerId));
-
+                
+                $userData = $daoUsers->fetchDetail(array("firstName","lastName","headLine","pictureUrl","numConnections"), array("id = ?" => $ownerId));
+                
                 $userScores[$ownerId]["points"] += $donations["amount"];
                 $userScores[$ownerId]["firstname"] = $userData["firstName"];
                 $userScores[$ownerId]["lastname"] = $userData["lastName"];
                 $userScores[$ownerId]["headline"] = $userData["headLine"];
                 $userScores[$ownerId]["picture"] = $userData["pictureUrl"];
-
+                $userScores[$ownerId]["numconnections"] = $userData["numConnections"];
+                
             }
-
+            
+            //usort($userScores, array("Kwgl_Array","cmp"));
+            //Zend_Debug::dump($userScores);
+            
+            $bubbleData = array();
+            $bubbleData["name"] = "flare";
+            $bubbleData["children"] = array();
+            
+            
+            $i = 0;
+            $j = 0;
+            
+            $sections = array("zero","first","second","third","fourth","fifth","sixth","seventh","eight","nineth","tenth");
+            
+            foreach($userScores AS $userScore){
+                
+                if($i == 0){
+                    //$j++;
+                    //$bubbleData["children"][$j]["name"] = $sections[$j];
+                    //$bubbleData["children"][$j]["children"] =  array();
+                }
+                
+                $bubbleData["children"][$j]["children"][$i]["name"] = $userScore["firstname"];
+                $bubbleData["children"][$j]["children"][$i]["size"] = $userScore["points"];
+                
+                $i++;
+                
+                if($i == 30){
+                   //$i = 0;
+                }
+                
+                //$i++;
+                
+            }
+            
+            //Zend_Debug::dump($bubbleData);
+            //$file = ROOT_DIR."/public_html/js/bubble.json";
+            //file_put_contents($file, json_encode($bubbleData));
+            
             $this->view->userScores = json_encode($userScores);
             echo $this->view->userScores;
             die();
 
+        }
+        
+        public function visualAction(){
+            
+            $file = ROOT_DIR."/public_html/js/bubble.json";
+            $current = file_get_contents($file);            
+            //$current = (array) json_decode($current);
+            //Zend_Debug::dump($current);
+            //die();
+            
         }
 
 }
