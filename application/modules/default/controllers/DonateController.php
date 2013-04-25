@@ -114,9 +114,9 @@ class DonateController extends Kwgl_Controller_Action {
 
                 foreach($connectionUsers AS $connectionUser){
 
-                    $random = rand(1,5);
-
-                    $userScores[$connectionUser["id"]]["points"] += $donations["amount"];
+                    $random = 2;
+                    
+                    $userScores[$connectionUser["id"]]["points"] += $donations["amount"]/$random;
                     $userScores[$connectionUser["id"]]["firstname"] = $connectionUser["firstName"];
                     $userScores[$connectionUser["id"]]["lastname"] = $connectionUser["lastName"];
                     $userScores[$connectionUser["id"]]["picture"] = $connectionUser["pictureUrl"];
@@ -137,25 +137,28 @@ class DonateController extends Kwgl_Controller_Action {
 
             }
 
-            //usort($userScores, array("Kwgl_Array","cmp"));
+            
+            usort($userScores, array("Kwgl_Array","cmp"));
+
             //Zend_Debug::dump($userScores);
 
             $bubbleData = array();
             $bubbleData["name"] = "flare";
             $bubbleData["children"] = array();
 
-
             $i = 0;
             $j = 0;
 
             $sections = array("zero","first","second","third","fourth","fifth","sixth","seventh","eight","nineth","tenth");
 
-            foreach($userScores AS $userScore){
+            
+            /*foreach($userScores AS $userScore){
+                
 
                 if($i == 0){
                     //$j++;
-                    //$bubbleData["children"][$j]["name"] = $sections[$j];
-                    //$bubbleData["children"][$j]["children"] =  array();
+                    $bubbleData["children"][$j]["name"] = $sections[$j];
+                    $bubbleData["children"][$j]["children"] =  array();
                 }
 
                 $bubbleData["children"][$j]["children"][$i]["name"] = $userScore["firstname"];
@@ -167,10 +170,11 @@ class DonateController extends Kwgl_Controller_Action {
                    //$i = 0;
                 }
 
+
                 //$i++;
-
-            }
-
+   
+            }*/
+            
             //Zend_Debug::dump($bubbleData);
             //$file = ROOT_DIR."/public_html/data/bubble.json";
             //file_put_contents($file, json_encode($bubbleData));
