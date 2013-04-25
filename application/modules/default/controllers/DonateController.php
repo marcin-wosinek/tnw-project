@@ -47,9 +47,9 @@ class DonateController extends Kwgl_Controller_Action {
 
                 if ($result->success) {
                     //print_r("success!: " . $result->transaction->id);
-                    
+
                     $this->_redirect("/donate/visual");
-                    
+
                 } else if ($result->transaction) {
                     print_r("Error processing transaction:");
                     print_r("\n  message: " . $result->message);
@@ -118,7 +118,7 @@ class DonateController extends Kwgl_Controller_Action {
                 foreach($connectionUsers AS $connectionUser){
 
                     $random = 2;
-                    
+
                     $userScores[$connectionUser["id"]]["points"] += $donations["amount"]/$random;
                     $userScores[$connectionUser["id"]]["firstname"] = $connectionUser["firstName"];
                     $userScores[$connectionUser["id"]]["lastname"] = $connectionUser["lastName"];
@@ -140,7 +140,7 @@ class DonateController extends Kwgl_Controller_Action {
 
             }
 
-            
+
             usort($userScores, array("Kwgl_Array","cmp"));
 
             //Zend_Debug::dump($userScores);
@@ -154,9 +154,9 @@ class DonateController extends Kwgl_Controller_Action {
 
             $sections = array("zero","first","second","third","fourth","fifth","sixth","seventh","eight","nineth","tenth");
 
-            
+
             /*foreach($userScores AS $userScore){
-                
+
 
                 if($i == 0){
                     //$j++;
@@ -175,9 +175,9 @@ class DonateController extends Kwgl_Controller_Action {
 
 
                 //$i++;
-   
+
             }*/
-            
+
             //Zend_Debug::dump($bubbleData);
             //$file = ROOT_DIR."/public_html/data/bubble.json";
             //file_put_contents($file, json_encode($bubbleData));
@@ -188,6 +188,7 @@ class DonateController extends Kwgl_Controller_Action {
             fclose($file);
 
             //$this->_redirect("/donate/cron");
+            echo $this->view->userScores;
             die();
         }
 
