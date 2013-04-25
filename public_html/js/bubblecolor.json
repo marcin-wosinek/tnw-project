@@ -6,14 +6,19 @@
                 {"name":"Magdalena","size":162.25},
                 {"name":"Wendy","size":9.375},
                 {"name":"Barack","size":18.75},
-                {"name":"Niels","size":9.375},
+                {"name":"Niels","size":9.375}
+            ]
+        },
+        {"name":"first","children":[
                 {"name":"Alexander","size":15},
                 {"name":"Wilfred","size":18.75},
                 {"name":"Agata","size":649},
                 {"name":"Elfried","size":18.75},
                 {"name":"Grzegorz","size":162.25},
                 {"name":"Monika","size":108.16666666667},
-                {"name":"Andrej","size":9.375},
+                {"name":"Andrej","size":9.375}
+            ]
+        },{"name":"second","children":[
                 {"name":"Susanne","size":9.375},
                 {"name":"Suzan","size":15},
                 {"name":"Valentine","size":18.75},
@@ -38,7 +43,9 @@
                 {"name":"Andy","size":10.714285714286},
                 {"name":"Bart","size":9.375},
                 {"name":"Pieter","size":18.75},
-                {"name":"Hassan","size":37.5},
+                {"name":"Hassan","size":37.5}
+            ]
+        },{"name":"third","children":[
                 {"name":"Boguslaw","size":72.111111111111},
                 {"name":"Izabela","size":72.111111111111},
                 {"name":"Christian","size":108.16666666667},
@@ -72,7 +79,9 @@
                 {"name":"Amely","size":25},
                 {"name":"Astrid","size":18.75},
                 {"name":"Jeroen","size":12.5},
-                {"name":"Tim","size":25},
+                {"name":"Tim","size":25}
+            ]
+        },{"name":"fourth","children":[
                 {"name":"Davide","size":92.714285714286},
                 {"name":"Simeon","size":75},
                 {"name":"Malgorzata","size":129.8},
@@ -106,7 +115,9 @@
                 {"name":"Wiebe","size":15},
                 {"name":"Marcin","size":81.125},
                 {"name":"Yuri","size":92.714285714286},
-                {"name":"Niels","size":12.5},
+                {"name":"Niels","size":12.5}
+            ]
+        },{"name":"fifth","children":[
                 {"name":"Pim","size":75},
                 {"name":"Mark","size":7.5},
                 {"name":"Bart","size":9.375},
@@ -133,7 +144,9 @@
                 {"name":"Andrew","size":129.8},
                 {"name":"Shenal","size":18.75},
                 {"name":"Dustin","size":10.714285714286},
-                {"name":"Karin","size":37.5},
+                {"name":"Karin","size":37.5}
+        ]
+        },{"name":"sixth","children":[
                 {"name":"Jessica","size":12.5},
                 {"name":"Thijs","size":8.3333333333333},
                 {"name":"Luke","size":10.714285714286},
@@ -158,7 +171,9 @@
                 {"name":"Anton","size":108.16666666667},
                 {"name":"Ruben","size":25},
                 {"name":"Ivana","size":12.5},
-                {"name":"Janneke","size":75},
+                {"name":"Janneke","size":75}
+        ]
+        },{"name":"seventh","children":[
                 {"name":"Marcin","size":162.25},
                 {"name":"Piotr","size":81.125},
                 {"name":"?ukasz","size":216.33333333333},
@@ -189,7 +204,9 @@
                 {"name":"Marcin","size":674},
                 {"name":"Robert","size":7.5},
                 {"name":"Marloes","size":10.714285714286},
-                {"name":"Pawe?","size":649},
+                {"name":"Pawe?","size":649}
+            ]
+        },{"name":"eight","children":[
                 {"name":"Velocity","size":9.375},
                 {"name":"?ukasz","size":324.5},
                 {"name":"Marisa","size":81.125},
@@ -217,4 +234,6 @@
                 {"name":"Tomasz","size":162.25},
                 {"name":"youyou","size":72.111111111111},
                 {"name":"Renata","size":72.111111111111},
-                {"name":"private","size":117.71428571429}]}]}
+                {"name":"private","size":117.71428571429}
+            ]}
+        ]}
