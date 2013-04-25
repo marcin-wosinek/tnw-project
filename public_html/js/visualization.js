@@ -18,7 +18,7 @@ $(function () {
 
         _.each(data, function (element, index) {
           element.color = colors[index + 1];
-          categories.push(element.firstname + " " + element.lastname);
+          categories.push(element.firstname + " " + element.lastname.charAt(0));
         });
 
         var chart = $('#visualizationContainer').highcharts({
