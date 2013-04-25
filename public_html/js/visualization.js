@@ -1,24 +1,11 @@
 $(function () {
-
+  var displayChart = function (categories, data) {
         var colors = Highcharts.getOptions().colors,
-            categories = ['Jan Kowaliski', 'Jeck Test', 'Lorem Ipsum', 'Saf Ari', 'Web Kit'],
-            name = 'Money raised',
-            data = [{
-                    y: 55.11,
-                    color: colors[0],
-                }, {
-                    y: 21.63,
-                    color: colors[1],
-                }, {
-                    y: 11.94,
-                    color: colors[2],
-                }, {
-                    y: 7.15,
-                    color: colors[3],
-                }, {
-                    y: 2.14,
-                    color: colors[4],
-                }];
+            name = 'Money raised';
+
+        _.each(data, function (element, index) {
+          element.color = colors[index];
+        });
 
         var chart = $('#visualizationContainer').highcharts({
             chart: {
@@ -67,4 +54,19 @@ $(function () {
             }
         })
         .highcharts(); // return chart
+};
+
+var categories = ['Jan Kowaliski', 'Jeck Test', 'Lorem Ipsum', 'Saf Ari', 'Web Kit'];
+data = [{
+        y: 531,
+    }, {
+        y: 12,
+    }, {
+        y: 1,
+    }, {
+        y: 0.15,
+    }, {
+        y: 0.14,
+    }];
+displayChart(categories, data);
     });
