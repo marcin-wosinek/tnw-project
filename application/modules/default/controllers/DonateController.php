@@ -46,7 +46,10 @@ class DonateController extends Kwgl_Controller_Action {
                 $daoDonations->insert($donationData);
 
                 if ($result->success) {
-                    print_r("success!: " . $result->transaction->id);
+                    //print_r("success!: " . $result->transaction->id);
+                    
+                    $this->_redirect("/donate/visual");
+                    
                 } else if ($result->transaction) {
                     print_r("Error processing transaction:");
                     print_r("\n  message: " . $result->message);

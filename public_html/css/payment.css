@@ -27,4 +27,17 @@ body {
 	.custom .small {
 		padding: 12px;
 	}
+        
+        .centerimage > li{
+            text-align:center;
+            display:inline-block;
+            float:none;
+        }
+        
+        .explanation > p{
+            width: 500px;
+             text-align:center;
+            display:inline-block;
+            float:none;
+        }
 
