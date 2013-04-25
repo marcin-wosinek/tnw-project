@@ -2,3 +2,4 @@ node_modules/*
 /nbproject/private/
 *.swp
 *.swo
+public_html/data/*json
