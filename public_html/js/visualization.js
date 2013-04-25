@@ -1,6 +1,7 @@
 $(function () {
-  var displayChart = function (categories, dataRaw) {
+  var displayChart = function (dataRaw) {
         var colors = Highcharts.getOptions().colors,
+            categories = [],
             name = 'Money raised';
 
         var data = _.toArray(dataRaw);
@@ -17,6 +18,7 @@ $(function () {
 
         _.each(data, function (element, index) {
           element.color = colors[index + 1];
+          categories.push(element.firstname + " " + element.lastname);
         });
 
         var chart = $('#visualizationContainer').highcharts({
@@ -68,13 +70,11 @@ $(function () {
         .highcharts(); // return chart
 };
 
-var categories = ['Jan Kowaliski', 'Jeck Test', 'Lorem Ipsum', 'Saf Ari', 'Web Kit'];
-
         $.ajax({
             dataType: "json",
             url: '/donate/list',
             success: function (data) {
-              displayChart(categories, data);
+              displayChart(data);
             }
         });
     });
