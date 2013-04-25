@@ -180,7 +180,7 @@ class DonateController extends Kwgl_Controller_Action {
             file_put_contents($file, json_encode($userScores));
             fclose($file);
 
-            $this->_redirect("/donate/cron");
+            //$this->_redirect("/donate/cron");
             die();
         }
 

@@ -72,7 +72,7 @@ $(function () {
 
         $.ajax({
             dataType: "json",
-            url: '/donate/list',
+            url: '/data/list.json',
             success: function (data) {
               displayChart(data);
             }
